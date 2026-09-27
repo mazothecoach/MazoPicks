@@ -144,7 +144,7 @@ def main():
         (no if (s["hit_rate"] or 0) <= 0.34 else si).append(f"Apuestas de madrugada: {s['ganados']} de {s['n']} ganadas. " + ("NO." if (s["hit_rate"] or 0) <= 0.34 else "OK."))
 
     out = {
-        "generated_at": datetime.now().isoformat(timespec="minutes"),
+        "generated_at": datetime.now().date().isoformat(),
         "n_boletos_total": len(tickets), "n_boletos_settled": len(settled), "n_boletos_open": len(open_t),
         "n_no_validados": sum(1 for t in tickets if not t.get("validated")),
         "advertencia_muestra": "Menos de 10 boletos liquidados: las métricas son orientativas." if len(settled) < 10 else None,

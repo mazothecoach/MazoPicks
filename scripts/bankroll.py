@@ -50,7 +50,7 @@ def compute():
                 tickets_n += 1
     weekly_budget = float(cfg.get("weekly_budget_mxn") or 0)
     return {
-        "generated_at": datetime.now().isoformat(timespec="minutes"),
+        "generated_at": datetime.now().date().isoformat(),
         "season": ledger["season"],
         "limite_perdida_mxn": limit,
         "neto_acumulado_mxn": net_total,
