@@ -327,15 +327,26 @@
     return `<${tag}${attrs}>${x.html == null ? '' : x.html}</${tag}>`;
   }
 
-  /** head: lista de celdas o lista de filas; rows: arrays de celdas o {cells, cls}. */
-  function table(head, rows, label) {
+  function stickCell(c, tag, stick) {
+    const x = isObj(c) ? Object.assign({}, c) : { html: c };
+    if (stick) x.cls = `${x.cls ? `${x.cls} ` : ''}stick`;
+    return cellHtml(x, tag);
+  }
+
+  /**
+   * head: lista de celdas o lista de filas; rows: arrays de celdas o {cells, cls}.
+   * opts.label: nombre accesible; opts.stick: primera columna fija al desplazar.
+   */
+  function table(head, rows, opts) {
+    const o = typeof opts === 'string' ? { label: opts } : (opts || {});
     const headRows = Array.isArray(head[0]) ? head : [head];
-    const thead = headRows.map((r) => `<tr>${r.map((c) => cellHtml(typeof c === 'string' ? th(c) : c, 'th')).join('')}</tr>`).join('');
+    const thead = headRows.map((r, ri) => `<tr>${r.map((c, ci) =>
+      stickCell(typeof c === 'string' ? th(c) : c, 'th', o.stick && ri === 0 && ci === 0)).join('')}</tr>`).join('');
     const tbody = rows.map((r) => {
       const row = Array.isArray(r) ? { cells: r } : r;
-      return `<tr${row.cls ? ` class="${row.cls}"` : ''}>${row.cells.map((c) => cellHtml(c, 'td')).join('')}</tr>`;
+      return `<tr${row.cls ? ` class="${row.cls}"` : ''}>${row.cells.map((c, ci) => stickCell(c, 'td', o.stick && ci === 0)).join('')}</tr>`;
     }).join('');
-    const aria = label ? ` role="region" tabindex="0" aria-label="${esc(label)}"` : '';
+    const aria = o.label ? ` role="region" tabindex="0" aria-label="${esc(o.label)}"` : '';
     return `<div class="table-wrap"${aria}><table><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
   }
 
@@ -588,6 +599,7 @@
       datasets.push({
         label: 'Límite de pérdida', data: labels.map(() => -limit), borderColor: COLORS.critical,
         backgroundColor: COLORS.critical, borderWidth: 1.5, borderDash: [6, 4], pointRadius: 0, pointHoverRadius: 0, pointHitRadius: 0,
+        pointStyle: 'line',
       });
     }
     return {
@@ -600,6 +612,7 @@
           y: moneyAxis(limit !== null ? { suggestedMin: -limit * 1.1, suggestedMax: limit * 0.25 } : {}),
         },
         plugins: {
+          legend: { labels: { usePointStyle: true, pointStyleWidth: 18 } },
           tooltip: {
             filter: (item) => item.parsed.y !== null,
             callbacks: {
@@ -748,9 +761,9 @@
       .map(([key, v]) => Object.assign({ key, label: v.label || catLabel(key) }, v))
       .sort((x, y) => (Number(y.n) || 0) - (Number(x.n) || 0) || String(x.label).localeCompare(String(y.label)));
     if (!cats.length) return `<div class="card"><h3>Hit rate por categoría de leg</h3>${empty('Sin legs calificadas.')}</div>`;
-    const tbl = table(['Categoría', th('n', 'r'), th('G-P', 'r'), th('Hit rate', 'r'), ''], cats.map((c) => [
-      esc(c.label), numCell(esc(fmtNum(c.n))), numCell(`${esc(fmtNum(c.wins))}-${esc(fmtNum(c.losses))}`),
-      numCell(esc(fmtPct(c.hit_rate))), sampleBadge(c.muestra_chica),
+    const tbl = table(['Categoría', th('n', 'r'), th('G-P', 'r'), th('Hit rate', 'r')], cats.map((c) => [
+      `${esc(c.label)}${c.muestra_chica ? `<div>${sampleBadge(true)}</div>` : ''}`, numCell(esc(fmtNum(c.n))),
+      numCell(`${esc(fmtNum(c.wins))}-${esc(fmtNum(c.losses))}`), numCell(esc(fmtPct(c.hit_rate))),
     ]), 'Hit rate por categoría');
     return view.chart({
       title: 'Hit rate por categoría de leg',
@@ -759,7 +772,7 @@
       config: () => ({
         type: 'bar',
         data: {
-          labels: cats.map((c) => `${c.label} (n=${fmtNum(c.n)})`),
+          labels: cats.map((c) => [String(c.label), `n=${fmtNum(c.n)}`]),
           datasets: [Object.assign(barDataset('Hit rate', cats.map((c) => toPct100(c.hit_rate)), COLORS.series[0]), { categoryPercentage: 0.8 })],
         },
         options: {
@@ -789,9 +802,9 @@
       .map(([k, v]) => Object.assign({ k }, v));
     if (!rows.length) return `<div class="card"><h3>Boletos por número de legs</h3>${empty('Sin boletos liquidados.')}</div>`;
     const legWord = (k) => (k === '1' ? '1 leg' : `${k} legs`);
-    const tbl = table(['Legs', th('n', 'r'), th('Hit rate', 'r'), th('Prob. implícita', 'r'), th('ROI', 'r'), ''], rows.map((r) => [
-      esc(legWord(r.k)), numCell(esc(fmtNum(r.n))), numCell(esc(fmtPct(r.hit_rate))),
-      numCell(esc(fmtPct(r.prob_implicita_prom, { digits: 1 }))), numCell(pctSigned(r.roi)), sampleBadge(r.muestra_chica),
+    const tbl = table(['Legs', th('n', 'r'), th('Hit rate', 'r'), th('Prob. impl.', 'r'), th('ROI', 'r')], rows.map((r) => [
+      `${esc(legWord(r.k))}${r.muestra_chica ? `<div>${sampleBadge(true)}</div>` : ''}`, numCell(esc(fmtNum(r.n))),
+      numCell(esc(fmtPct(r.hit_rate))), numCell(esc(fmtPct(r.prob_implicita_prom, { digits: 1 }))), numCell(pctSigned(r.roi)),
     ]), 'Boletos por número de legs');
     return view.chart({
       title: 'Boletos por número de legs',
@@ -817,7 +830,7 @@
   function calibrationChart(a, view) {
     const bins = arr(a.calibracion).filter(isObj);
     if (!bins.length) return `<div class="card"><h3>Calibración</h3>${empty('Sin legs con momio para calibrar.')}</div>`;
-    const tbl = table(['Rango de prob. implícita', th('n', 'r'), th('Prob. implícita', 'r'), th('Hit rate real', 'r'), th('Diferencia', 'r')], bins.map((b) => {
+    const tbl = table(['Rango', th('n', 'r'), th('Prob. impl.', 'r'), th('Hit rate', 'r'), th('Diferencia', 'r')], bins.map((b) => {
       const diff = isNum(b.hit_rate) && isNum(b.prob_implicita_prom) ? b.hit_rate - b.prob_implicita_prom : null;
       return [esc(b.bin), numCell(esc(fmtNum(b.n))), numCell(esc(fmtPct(b.prob_implicita_prom, { digits: 1 }))),
         numCell(esc(fmtPct(b.hit_rate, { digits: 1 }))), numCell(`${pctSigned(diff)}${Number(b.n) < 10 ? ` ${sampleBadge(true)}` : ''}`)];
@@ -857,7 +870,7 @@
       numCell(`${esc(fmtPct(v.hit_rate))} <span class="muted">(${esc(fmtNum(v.ganados))}/${esc(fmtNum(v.n))})</span>`),
     ]);
     const head = ['Grupo', th('n', 'r'), th('Invertido', 'r'), th('Cobrado', 'r'), th('Profit', 'r'), th('ROI', 'r'), th('Hit rate', 'r')];
-    return table(head, rows, label);
+    return table(head, rows, { label, stick: true });
   }
 
   function breakdown(a) {
@@ -919,7 +932,6 @@
     const stake = esc(fmtMoney(t.stake_mxn)) + (t.free_bet ? ' <span class="muted small">(gratis)</span>' : '');
     const legs = arr(t.legs).filter(isObj);
     const facts = [
-      ['Fecha', esc(fmtDate(t.placed_at))],
       ['Tipo', esc(typeLabel(t.type))],
       ['Legs', esc(fmtNum(toNum(t.legs_count) !== null ? t.legs_count : legs.length))],
       ['Semana', t.week ? `W${esc(pad2(t.week))}` : NA],
@@ -995,9 +1007,9 @@
       const g = obj(s.global);
       return '<div class="card">' +
         `<div class="kpi-label">Temporada ${esc(s.season)}</div>` +
-        `<div class="hero-value season-hero">${money(g.neto, { signed: true })}</div>` +
+        `<div class="hero-value season-hero">${money(g.neto, { signed: true, unit: false })}<span class="unit">MXN</span></div>` +
         `<div class="small">ROI ${pctSigned(g.roi)}, ${esc(fmtNum(g.n_semanas_jugadas))} semanas jugadas</div>` +
-        (s.stopped_after ? `<div style="margin-top:6px">${badge(`detenida tras ${s.stopped_after}`, 'warn')}</div>` : '') +
+        (s.stopped_after ? `<div style="margin-top:6px">${badge(`detenida tras ${shortWeek(s.stopped_after)}`, 'warn', `Se detuvo después de ${s.stopped_after}`)}</div>` : '') +
         '</div>';
     }).join('');
     const c = obj(combined);
@@ -1015,29 +1027,30 @@
   function weekWithNet(season, label) {
     if (!label) return NA;
     const net = weekNet(season, label);
-    return `${esc(label)}${net !== null ? ` <span class="muted">(${money(net, { signed: true, unit: false })})</span>` : ''}`;
+    return `${esc(label)}${net !== null ? `<br>${money(net, { signed: true, unit: false })}` : ''}`;
   }
 
   function compareTable(seasons) {
     const G = (s) => obj(s.global);
     const metrics = [
-      ['Neto', (s) => money(G(s).neto, { signed: true })],
+      ['Neto', (s) => money(G(s).neto, { signed: true, unit: false })],
       ['ROI', (s) => pctSigned(G(s).roi)],
-      ['Depositado', (s) => money(G(s).deposito)],
-      ['Retirado', (s) => money(G(s).retiro)],
+      ['Depositado', (s) => money(G(s).deposito, { unit: false })],
+      ['Retirado', (s) => money(G(s).retiro, { unit: false })],
       ['Semanas jugadas', (s) => esc(fmtNum(G(s).n_semanas_jugadas))],
       ['Semanas ganadoras', (s) => `${esc(fmtNum(G(s).semanas_ganadoras))} de ${esc(fmtNum(G(s).n_semanas_jugadas))}`],
       ['Hit rate semanal', (s) => esc(fmtPct(G(s).hit_rate_semanal))],
       ['Semanas sin retiro', (s) => esc(fmtNum(G(s).semanas_sin_retiro))],
-      ['Promedio neto por semana', (s) => money(G(s).promedio_neto_semana, { signed: true })],
+      ['Promedio neto por semana', (s) => money(G(s).promedio_neto_semana, { signed: true, unit: false })],
       ['Mejor semana', (s) => weekWithNet(s, G(s).mejor_semana)],
       ['Peor semana', (s) => weekWithNet(s, G(s).peor_semana)],
-      ['Mejor acumulado', (s) => money(s.mejor_acumulado, { signed: true })],
-      ['Peor acumulado', (s) => money(s.peor_acumulado, { signed: true })],
+      ['Mejor acumulado', (s) => money(s.mejor_acumulado, { signed: true, unit: false })],
+      ['Peor acumulado', (s) => money(s.peor_acumulado, { signed: true, unit: false })],
     ];
     const head = ['Métrica'].concat(seasons.map((s) => th(String(s.season), 'r')));
     const rows = metrics.map(([label, fn]) => [esc(label)].concat(seasons.map((s) => numCell(fn(s)))));
-    return table(head, rows, 'Comparativa global por temporada');
+    return table(head, rows, { label: 'Comparativa global por temporada', stick: true }) +
+      '<p class="block-note" style="margin-top:8px">Montos en MXN.</p>';
   }
 
   function historyChart(seasons, view) {
@@ -1078,6 +1091,7 @@
             y: moneyAxis(),
           },
           plugins: {
+            legend: { labels: { usePointStyle: true } },
             tooltip: {
               filter: (item) => item.parsed.y !== null,
               callbacks: {
@@ -1098,7 +1112,7 @@
 
   function splitTable(seasons, key, defs, firstLabel) {
     const head1 = [{ html: esc(firstLabel), rowspan: 2 }].concat(seasons.map((s) => ({ html: esc(s.season), colspan: 3, cls: 'group' })));
-    const head2 = seasons.flatMap(() => [th('Neto', 'r sep'), th('ROI', 'r'), th('Ganadoras / jugadas', 'r')]);
+    const head2 = seasons.flatMap(() => [th('Neto', 'r sep'), th('ROI', 'r'), th('G/J', 'r')]);
     const rows = defs.map(([k, label]) => [esc(label)].concat(seasons.flatMap((s) => {
       const v = obj(obj(s[key])[k]);
       if (!Number(v.n_semanas_jugadas)) return [{ html: '<span class="muted">sin jugar</span>', colspan: 3, cls: 'sep' }];
@@ -1108,7 +1122,8 @@
         numCell(`${esc(fmtNum(v.semanas_ganadoras))} / ${esc(fmtNum(v.n_semanas_jugadas))}`),
       ];
     })));
-    return table([head1, head2], rows, firstLabel) + '<p class="block-note" style="margin-top:8px">Neto en MXN.</p>';
+    return table([head1, head2], rows, { label: firstLabel, stick: true }) +
+      '<p class="block-note" style="margin-top:8px">Neto en MXN. G/J = semanas ganadoras / jugadas.</p>';
   }
 
   function monthsTable(seasons) {
@@ -1121,7 +1136,7 @@
       if (!v || (!toNum(v.deposito) && !toNum(v.retiro) && v.deposito !== 'oculto')) return [{ html: '<span class="muted">sin jugar</span>', colspan: 2, cls: 'sep' }];
       return [numCell(money(v.neto, { signed: true, unit: false }), 'sep'), numCell(pctSigned(v.roi))];
     })));
-    return table([head1, head2], rows, 'Por mes') + '<p class="block-note" style="margin-top:8px">Neto en MXN.</p>';
+    return table([head1, head2], rows, { label: 'Por mes', stick: true }) + '<p class="block-note" style="margin-top:8px">Neto en MXN.</p>';
   }
 
   function streaksTable(seasons) {
@@ -1131,7 +1146,7 @@
       ['Máx. semanas perdedoras seguidas', (s) => esc(fmtNum(R(s).max_semanas_perdedoras_seguidas))],
       ['Peor drawdown en racha', (s) => money(R(s).peor_drawdown_en_racha, { signed: true })],
     ].map(([label, fn]) => [esc(label)].concat(seasons.map((s) => numCell(fn(s)))));
-    return table(head, rows, 'Rachas');
+    return table(head, rows, { label: 'Rachas', stick: true });
   }
 
   function rulesWithData(list) {
@@ -1338,8 +1353,8 @@
       p.verified === false ? badge('No verificado', 'warn', 'Pick sin verificar contra el video') : '',
       res ? badge(res[0], res[1]) : '',
     ].join('');
-    const meta = [MARKET_LABELS[p.market] || p.market, p.category ? catLabel(p.category) : '', lineText(p),
-      toNum(p.units) !== null ? `${fmtNum(p.units, 2)} u` : ''].filter(Boolean).map(esc).join(' · ');
+    const meta = uniq([MARKET_LABELS[p.market] || p.market, p.category ? catLabel(p.category) : '', lineText(p),
+      toNum(p.units) !== null ? `${fmtNum(p.units, 2)} u` : ''].filter(Boolean)).map(esc).join(' · ');
     const kickoff = p.kickoff ? fmtDate(p.kickoff) : '';
     return '<article class="card pick">' +
       `<div class="pick-top"><span class="pick-game">${esc(p.game || 'Partido sin dato')}</span><span>${esc(kickoff)}</span></div>` +
