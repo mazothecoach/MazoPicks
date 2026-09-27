@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="description" content="Picks NFL de canales de YouTube, bankroll 2026 con stop loss y tendencias de mis apuestas.">
+  <title>MazoPicks</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233987e5'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='17' font-weight='700' text-anchor='middle' fill='%23fff'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/style.css">
+  <!-- Chart.js es opcional: si no carga, el sitio muestra tablas en lugar de gráficas. -->
+  <script id="chartjs" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" async onerror="window.chartjsFailed = true"></script>
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <div class="brand">MazoPicks <span class="brand-sub">NFL, picks y bankroll</span></div>
+      <button id="toggle-amounts" class="btn" type="button" aria-pressed="false">Ocultar montos</button>
+    </div>
+    <nav id="tabs" class="container tabs" aria-label="Secciones"></nav>
+  </header>
+
+  <main id="main" class="container">
+    <div id="alerts"></div>
+    <div id="panels">
+      <p class="loading">Cargando datos...</p>
+    </div>
+    <noscript>
+      <p class="banner banner-warn">Este sitio necesita JavaScript para mostrar los datos.</p>
+    </noscript>
+  </main>
+
+  <footer class="site-footer container">
+    <p>Solo para análisis personal. No es asesoría de apuestas.</p>
+    <p id="generated">Datos generados: s/d</p>
+  </footer>
+</body>
+</html>
