@@ -97,7 +97,7 @@ def main():
         dump(d, DOCS / "picks" / pf.name)
         weeks.append({"season": d["season"], "week": d["week"], "file": f"picks/{pf.name}", "n_picks": len(d.get("picks", [])),
                       "n_videos": len(d.get("sources", [])), "status": d.get("status", "ok"), "generated_at": d.get("generated_at")})
-    dump({"generated_at": datetime.now().isoformat(timespec="minutes"), "season": cfg["season"], "show_amounts": show,
+    dump({"generated_at": datetime.now().date().isoformat(), "season": cfg["season"], "show_amounts": show,
           "weeks": sorted(weeks, key=lambda w: (w["season"], w["week"])), "channel_record": record}, DOCS / "index.json")
     # Validación
     for p in DOCS.rglob("*.json"):

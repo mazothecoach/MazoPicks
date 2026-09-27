@@ -2,8 +2,9 @@
 """Califica picks de semanas pasadas con marcadores finales (ESPN scoreboard público).
 
 Marcadores: site.api.espn.com (no verificado como estable; si falla deja result=null y avisa).
-Califica moneyline, spread y total. Props de jugador quedan en null salvo que el pick traiga
-"result_manual". Actualiza data/picks/{season}-W{nn}.json y el récord por canal.
+Semanas 1 a 18 (temporada regular) y 19 a 22 (playoffs). Califica moneyline, spread y total.
+Props de jugador quedan en null salvo que el pick traiga "result_manual".
+Actualiza data/picks/{season}-W{nn}.json y el récord por canal.
 
 Uso:  python scripts/grade_picks.py [2026-W03] [--dry]
 """
@@ -15,12 +16,25 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PICKS = ROOT / "data" / "picks"
-ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates={season}&seasontype=2&week={week}"
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates={season}&seasontype={seasontype}&week={week}"
+# Semanas de playoffs (19 a 22) -> semana ESPN con seasontype=3. La 4 de ESPN es el Pro Bowl.
+PLAYOFF_WEEKS = {19: 1, 20: 2, 21: 3, 22: 5}  # wild card, divisional, conferencia, Super Bowl
+
+
+def espn_params(week):
+    """Devuelve (seasontype, espn_week): 1 a 18 temporada regular (2), 19 a 22 playoffs (3)."""
+    week = int(week)
+    if 1 <= week <= 18:
+        return 2, week
+    if week in PLAYOFF_WEEKS:
+        return 3, PLAYOFF_WEEKS[week]
+    raise ValueError(f"semana {week} fuera de rango (1 a 22)")
 
 
 def fetch_scores(season, week):
     import requests
-    r = requests.get(ESPN.format(season=season, week=week), timeout=30)
+    seasontype, espn_week = espn_params(week)
+    r = requests.get(ESPN.format(season=season, seasontype=seasontype, week=espn_week), timeout=30)
     r.raise_for_status()
     games = []
     for ev in r.json().get("events", []):

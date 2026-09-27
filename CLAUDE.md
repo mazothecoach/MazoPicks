@@ -120,7 +120,8 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
     "line": 20.5, "odds_american": -110, "odds_decimal": 1.91,
     "confidence": "alta", "is_lock": false, "units": null,
     "reasoning": "Resumen de 1 a 2 frases del porqué, en español.", "timestamp": "12:34",
-    "verified": false, "result": null, "result_manual": null
+    "verified": false, "result": null, "result_manual": null,
+    "confidence_note": "Inferido del audio", "also_in": [], "notes": null
   }],
   "insights": ["3 a 6 bullets con las ideas más valiosas del video"],
   "record": {"The Sauce Picks": {"win": 0, "loss": 0, "push": 0, "units": 0.0}}
@@ -132,6 +133,7 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
 - odds y line: solo si se dicen en el video. Si no, null. No inventes momios.
 - verified: false siempre que el dato venga solo del audio. Corrige nombres mal transcritos contra el roster si puedes y déjalo anotado en reasoning.
 - result: win | loss | push | void | null. Lo llena grade_picks.py (moneyline, spread, total). Props: null salvo result_manual.
+- confidence_note, also_in (ids de otros videos donde se repite el mismo pick, para no duplicarlo) y notes son opcionales.
 - status: "ok" o "pendiente_transcripcion" (con status_note) cuando la semana existe pero aún no se transcribió.
 
 ### 5.2 Mis apuestas (data/my_bets.json)
