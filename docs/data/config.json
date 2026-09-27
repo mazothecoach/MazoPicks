@@ -1,0 +1,48 @@
+{
+ "season": 2026,
+ "timezone": "America/Mexico_City",
+ "currency": "MXN",
+ "week1_kickoff": "2026-09-09",
+ "week1_kickoff_note": "Kickoff 2026: miércoles 9 de septiembre (SEA vs NE). La semana NFL se cuenta de martes a lunes. Si el título del video dice Week N, ese número manda.",
+ "stop_loss": {
+  "max_net_loss_mxn": 10000,
+  "rule": "Si el neto acumulado 2026 (retiros menos depósitos) llega a -10,000 MXN, se deja de apostar el resto de la temporada.",
+  "warning_levels": [
+   {
+    "label": "verde",
+    "from_net": 0,
+    "to_net": -5000
+   },
+   {
+    "label": "amarillo",
+    "from_net": -5000,
+    "to_net": -8000
+   },
+   {
+    "label": "rojo",
+    "from_net": -8000,
+    "to_net": -10000
+   }
+  ]
+ },
+ "weekly_budget_mxn": 1000,
+ "books": [
+  {
+   "key": "playdoit",
+   "name": "Playdoit",
+   "url": "https://www.playdoit.mx",
+   "odds_format": "american"
+  },
+  {
+   "key": "draftea",
+   "name": "Draftea",
+   "url": "https://www.draftea.com",
+   "odds_format": "decimal"
+  }
+ ],
+ "site": {
+  "title": "MazoPicks",
+  "show_amounts": true,
+  "show_amounts_note": "El repo es público. Si no quieres que se vean los montos MXN, cambia show_amounts a false y el sitio muestra solo ROI y porcentajes."
+ }
+}

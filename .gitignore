@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+logs/*.log
+data/videos_new.json
+data/transcripts/*.vtt
+data/transcripts/*.m4a
+data/transcripts/*.webm
+data/parlay_screenshots/
+.DS_Store
+Thumbs.db

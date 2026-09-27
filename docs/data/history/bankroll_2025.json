@@ -1,0 +1,265 @@
+{
+ "season": 2025,
+ "currency": "MXN",
+ "source": "NFL BETS.xlsx (Drive), hoja 2025",
+ "stopped_after": "Week 11",
+ "stop_reason": "Perdí más de lo presupuestado y dejé de apostar el resto de la temporada",
+ "lessons_learned": [
+  "No apostar en pre season ni las primeras dos semanas",
+  "Mid season es el sweetspot",
+  "No apostar si no vi los juegos una semana antes",
+  "No apostar muy cerca a los juegos con prisa"
+ ],
+ "weeks": [
+  {
+   "idx": 1,
+   "label": "Week 1 Pre",
+   "phase": "pre",
+   "dates": "1-11 ago",
+   "deposito": 400.0,
+   "retiro": 905.0
+  },
+  {
+   "idx": 2,
+   "label": "Week 2 Pre",
+   "phase": "pre",
+   "dates": "12-19 ago",
+   "deposito": 500.0,
+   "retiro": 3561.0
+  },
+  {
+   "idx": 3,
+   "label": "Week 3 Pre",
+   "phase": "pre",
+   "dates": "20-26 ago",
+   "deposito": 1100.0,
+   "retiro": 998.0
+  },
+  {
+   "idx": 4,
+   "label": "Week 1",
+   "phase": "reg",
+   "dates": "3-10 sep",
+   "deposito": 4900.0,
+   "retiro": 6981.0
+  },
+  {
+   "idx": 5,
+   "label": "Week 2",
+   "phase": "reg",
+   "dates": "11-17 sep",
+   "deposito": 8596.0,
+   "retiro": 6193.0
+  },
+  {
+   "idx": 6,
+   "label": "Week 3",
+   "phase": "reg",
+   "dates": "18-24 sep",
+   "deposito": 4350.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 7,
+   "label": "Week 4",
+   "phase": "reg",
+   "dates": "25-30 sep",
+   "deposito": 2300.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 8,
+   "label": "Week 5",
+   "phase": "reg",
+   "dates": "1-7 oct",
+   "deposito": 1000.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 9,
+   "label": "Week 6",
+   "phase": "reg",
+   "dates": "8-14 oct",
+   "deposito": 3000.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 10,
+   "label": "Week 7",
+   "phase": "reg",
+   "dates": "15-21 oct",
+   "deposito": 3040.0,
+   "retiro": 6000.0
+  },
+  {
+   "idx": 11,
+   "label": "Week 8",
+   "phase": "reg",
+   "dates": "22-28 oct",
+   "deposito": 3240.0,
+   "retiro": 4245.0
+  },
+  {
+   "idx": 12,
+   "label": "Week 9",
+   "phase": "reg",
+   "dates": "29 oct-4 nov",
+   "deposito": 1400.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 13,
+   "label": "Week 10",
+   "phase": "reg",
+   "dates": "5-11 nov",
+   "deposito": 1400.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 14,
+   "label": "Week 11",
+   "phase": "reg",
+   "dates": "12-18 nov",
+   "deposito": 1500.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 15,
+   "label": "Week 12",
+   "phase": "reg",
+   "dates": "19-25 nov",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 16,
+   "label": "Week 13",
+   "phase": "reg",
+   "dates": "26 nov-2 dic",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 17,
+   "label": "Week 14",
+   "phase": "reg",
+   "dates": "3-9 dic",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 18,
+   "label": "Week 15",
+   "phase": "reg",
+   "dates": "10-16 dic",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 19,
+   "label": "Week 16",
+   "phase": "reg",
+   "dates": "17-23 dic",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 20,
+   "label": "Week 17",
+   "phase": "reg",
+   "dates": "24-30 dic",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 21,
+   "label": "Week 18",
+   "phase": "reg",
+   "dates": "31 dic-6 ene",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 22,
+   "label": "Super Wild Card",
+   "phase": "post",
+   "dates": "7-13 ene",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 23,
+   "label": "Divisional",
+   "phase": "post",
+   "dates": "14-20 ene",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 24,
+   "label": "Conference",
+   "phase": "post",
+   "dates": "21-27 ene",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 25,
+   "label": "Natty",
+   "phase": "post",
+   "dates": "28 ene-4 feb",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "idx": 26,
+   "label": "Super Bowl",
+   "phase": "post",
+   "dates": "9 feb",
+   "deposito": 0.0,
+   "retiro": 0.0
+  }
+ ],
+ "months": [
+  {
+   "month": "Agosto",
+   "deposito": 2000.0,
+   "retiro": 5464.0
+  },
+  {
+   "month": "Septiembre",
+   "deposito": 20146.0,
+   "retiro": 13174.0
+  },
+  {
+   "month": "Octubre",
+   "deposito": 10280.0,
+   "retiro": 10245.0
+  },
+  {
+   "month": "Noviembre",
+   "deposito": 4300.0,
+   "retiro": 0.0
+  },
+  {
+   "month": "Diciembre",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "month": "Enero",
+   "deposito": 0.0,
+   "retiro": 0.0
+  },
+  {
+   "month": "Super Bowl",
+   "deposito": 0.0,
+   "retiro": 0.0
+  }
+ ],
+ "totals_in_file": {
+  "deposito": 36726.0,
+  "retiro": 28883.0,
+  "neto": -7843.0
+ }
+}

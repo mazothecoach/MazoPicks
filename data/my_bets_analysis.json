@@ -1,0 +1,258 @@
+{
+  "generated_at": "2026-09-27T19:15",
+  "n_boletos_total": 2,
+  "n_boletos_settled": 2,
+  "n_boletos_open": 0,
+  "n_no_validados": 2,
+  "advertencia_muestra": "Menos de 10 boletos liquidados: las métricas son orientativas.",
+  "global": {
+    "n": 2,
+    "invertido_mxn": 500.0,
+    "cobrado_mxn": 0.0,
+    "profit_mxn": -500.0,
+    "roi": -1.0,
+    "ganados": 0,
+    "hit_rate": 0.0,
+    "muestra_chica": true
+  },
+  "por_tipo": {
+    "sgp": {
+      "n": 1,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    },
+    "parlay": {
+      "n": 1,
+      "invertido_mxn": 0.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": 0.0,
+      "roi": null,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    }
+  },
+  "por_legs": {
+    "2": {
+      "n": 1,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true,
+      "prob_implicita_prom": 0.308
+    },
+    "3": {
+      "n": 1,
+      "invertido_mxn": 0.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": 0.0,
+      "roi": null,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true,
+      "prob_implicita_prom": 0.181
+    }
+  },
+  "por_casa": {
+    "playdoit": {
+      "n": 1,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    },
+    "draftea": {
+      "n": 1,
+      "invertido_mxn": 0.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": 0.0,
+      "roi": null,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    }
+  },
+  "por_horario": {
+    "noche (18-24)": {
+      "n": 1,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    },
+    "madrugada (00-06)": {
+      "n": 1,
+      "invertido_mxn": 0.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": 0.0,
+      "roi": null,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    }
+  },
+  "por_origen": {
+    "propio": {
+      "n": 2,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    }
+  },
+  "por_semana": {
+    "W02": {
+      "n": 1,
+      "invertido_mxn": 0.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": 0.0,
+      "roi": null,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    },
+    "W03": {
+      "n": 1,
+      "invertido_mxn": 500.0,
+      "cobrado_mxn": 0.0,
+      "profit_mxn": -500.0,
+      "roi": -1.0,
+      "ganados": 0,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    }
+  },
+  "boosts": {
+    "n": 1,
+    "invertido_mxn": 500.0,
+    "cobrado_mxn": 0.0,
+    "profit_mxn": -500.0,
+    "roi": -1.0,
+    "ganados": 0,
+    "hit_rate": 0.0,
+    "muestra_chica": true
+  },
+  "apuestas_gratis": {
+    "n": 1,
+    "invertido_mxn": 0.0,
+    "cobrado_mxn": 0.0,
+    "profit_mxn": 0.0,
+    "roi": null,
+    "ganados": 0,
+    "hit_rate": 0.0,
+    "muestra_chica": true
+  },
+  "por_categoria_leg": {
+    "ml_1h": {
+      "n": 1,
+      "wins": 0,
+      "losses": 1,
+      "hit_rate": 0.0,
+      "muestra_chica": true,
+      "label": "Moneyline 1a mitad"
+    },
+    "pass_comp": {
+      "n": 1,
+      "wins": 1,
+      "losses": 0,
+      "hit_rate": 1.0,
+      "muestra_chica": true,
+      "label": "Pases completados"
+    },
+    "ml": {
+      "n": 1,
+      "wins": 1,
+      "losses": 0,
+      "hit_rate": 1.0,
+      "muestra_chica": true,
+      "label": "Moneyline"
+    },
+    "td_scorer": {
+      "n": 2,
+      "wins": 1,
+      "losses": 1,
+      "hit_rate": 0.5,
+      "muestra_chica": true,
+      "label": "Anotador de TD"
+    }
+  },
+  "por_equipo_leg": {
+    "DET": {
+      "n": 1,
+      "wins": 0,
+      "losses": 1,
+      "hit_rate": 0.0,
+      "muestra_chica": true
+    },
+    "GB": {
+      "n": 3,
+      "wins": 2,
+      "losses": 1,
+      "hit_rate": 0.667,
+      "muestra_chica": true
+    },
+    "TB": {
+      "n": 1,
+      "wins": 1,
+      "losses": 0,
+      "hit_rate": 1.0,
+      "muestra_chica": true
+    }
+  },
+  "por_fuente_leg": {
+    "propio": {
+      "n": 5,
+      "wins": 3,
+      "losses": 2,
+      "hit_rate": 0.6,
+      "muestra_chica": true
+    }
+  },
+  "leg_que_me_mata": {
+    "parlays_perdidos": 2,
+    "perdidos_por_una_sola_leg": 2,
+    "categoria_culpable": {
+      "ml_1h": 1,
+      "td_scorer": 1
+    }
+  },
+  "calibracion": [
+    {
+      "bin": "<40%",
+      "n": 1,
+      "prob_implicita_prom": 0.385,
+      "hit_rate": 1.0
+    },
+    {
+      "bin": "55-70%",
+      "n": 2,
+      "prob_implicita_prom": 0.631,
+      "hit_rate": 0.5
+    }
+  ],
+  "que_si": [],
+  "que_no": [],
+  "muestra_insuficiente": [
+    "Anotador de TD: solo 2 leg(s) calificadas. Muestra insuficiente.",
+    "Moneyline 1a mitad: solo 1 leg(s) calificadas. Muestra insuficiente.",
+    "Pases completados: solo 1 leg(s) calificadas. Muestra insuficiente.",
+    "Moneyline: solo 1 leg(s) calificadas. Muestra insuficiente."
+  ]
+}

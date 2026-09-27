@@ -1,0 +1,29 @@
+{
+  "season": 2026,
+  "currency": "MXN",
+  "_doc": "Mismo modelo que NFL BETS.xlsx: una fila por semana NFL con depósito y retiro. neto = retiro - deposito. Llena deposito/retiro al cierre de cada semana (lunes). Las filas con filled=false aún no se han capturado.",
+  "weeks": [
+    {"idx": 1,  "label": "Week 1",  "phase": "reg",  "dates": "8-14 sep",  "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 2,  "label": "Week 2",  "phase": "reg",  "dates": "15-21 sep", "deposito": 0, "retiro": 0, "filled": false, "note": "Hay boletos de esta semana en capturas (20 sep). Capturar depósito/retiro."},
+    {"idx": 3,  "label": "Week 3",  "phase": "reg",  "dates": "22-28 sep", "deposito": 0, "retiro": 0, "filled": false, "note": "Hay boletos de esta semana en capturas (24 sep)."},
+    {"idx": 4,  "label": "Week 4",  "phase": "reg",  "dates": "29 sep-5 oct", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 5,  "label": "Week 5",  "phase": "reg",  "dates": "6-12 oct",  "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 6,  "label": "Week 6",  "phase": "reg",  "dates": "13-19 oct", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 7,  "label": "Week 7",  "phase": "reg",  "dates": "20-26 oct", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 8,  "label": "Week 8",  "phase": "reg",  "dates": "27 oct-2 nov", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 9,  "label": "Week 9",  "phase": "reg",  "dates": "3-9 nov",   "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 10, "label": "Week 10", "phase": "reg",  "dates": "10-16 nov", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 11, "label": "Week 11", "phase": "reg",  "dates": "17-23 nov", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 12, "label": "Week 12", "phase": "reg",  "dates": "24-30 nov", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 13, "label": "Week 13", "phase": "reg",  "dates": "1-7 dic",   "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 14, "label": "Week 14", "phase": "reg",  "dates": "8-14 dic",  "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 15, "label": "Week 15", "phase": "reg",  "dates": "15-21 dic", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 16, "label": "Week 16", "phase": "reg",  "dates": "22-28 dic", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 17, "label": "Week 17", "phase": "reg",  "dates": "29 dic-4 ene", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 18, "label": "Week 18", "phase": "reg",  "dates": "5-11 ene",  "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 19, "label": "Super Wild Card", "phase": "post", "dates": "12-18 ene", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 20, "label": "Divisional", "phase": "post", "dates": "19-25 ene", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 21, "label": "Conference", "phase": "post", "dates": "26 ene-1 feb", "deposito": 0, "retiro": 0, "filled": false},
+    {"idx": 22, "label": "Super Bowl", "phase": "post", "dates": "feb", "deposito": 0, "retiro": 0, "filled": false}
+  ]
+}

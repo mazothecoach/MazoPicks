@@ -1,0 +1,5 @@
+{
+  "_doc": "Capturas de Drive ya extraídas a my_bets.json. Clave: nombre de archivo en Drive. Valor: ticket_ids extraídos y fecha.",
+  "IMG_9160.png": {"ticket_ids": ["5459407998"], "extracted_at": "2026-09-27", "note": "Leída en el plan inicial (CLAUDE.md de Drive). Validar contra la captura cuando esté en capturas_boletos."},
+  "IMG_9174.jpeg": {"ticket_ids": ["TKT_IMG_9174"], "extracted_at": "2026-09-27", "note": "Leída en el plan inicial. El Ticket ID real no se anotó; reemplazar cuando se suba la captura."}
+}

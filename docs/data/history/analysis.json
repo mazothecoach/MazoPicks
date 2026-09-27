@@ -1,0 +1,630 @@
+{
+ "generated_from": [
+  "bankroll_2024.json",
+  "bankroll_2025.json"
+ ],
+ "seasons": [
+  {
+   "season": 2024,
+   "global": {
+    "n_semanas_jugadas": 27,
+    "deposito": 85235.38,
+    "retiro": 98646.23,
+    "neto": 13410.85,
+    "roi": 0.16,
+    "semanas_ganadoras": 11,
+    "semanas_perdedoras": 16,
+    "semanas_sin_retiro": 7,
+    "hit_rate_semanal": 0.41,
+    "promedio_neto_semana": 496.7,
+    "mejor_semana": "Week 14",
+    "peor_semana": "Week 16"
+   },
+   "por_fase": {
+    "pre": {
+     "n_semanas_jugadas": 4,
+     "deposito": 6359.0,
+     "retiro": 5976.0,
+     "neto": -383.0,
+     "roi": -0.06,
+     "semanas_ganadoras": 2,
+     "semanas_perdedoras": 2,
+     "semanas_sin_retiro": 2,
+     "hit_rate_semanal": 0.5,
+     "promedio_neto_semana": -95.75,
+     "mejor_semana": "Week 3 Pre",
+     "peor_semana": "Week 4 Pre"
+    },
+    "reg": {
+     "n_semanas_jugadas": 18,
+     "deposito": 70776.38,
+     "retiro": 83570.23,
+     "neto": 12793.85,
+     "roi": 0.18,
+     "semanas_ganadoras": 7,
+     "semanas_perdedoras": 11,
+     "semanas_sin_retiro": 2,
+     "hit_rate_semanal": 0.39,
+     "promedio_neto_semana": 710.77,
+     "mejor_semana": "Week 14",
+     "peor_semana": "Week 16"
+    },
+    "post": {
+     "n_semanas_jugadas": 5,
+     "deposito": 8100.0,
+     "retiro": 9100.0,
+     "neto": 1000.0,
+     "roi": 0.12,
+     "semanas_ganadoras": 2,
+     "semanas_perdedoras": 3,
+     "semanas_sin_retiro": 3,
+     "hit_rate_semanal": 0.4,
+     "promedio_neto_semana": 200.0,
+     "mejor_semana": "Divisional",
+     "peor_semana": "Super Bowl"
+    }
+   },
+   "temporada_regular_por_tramo": {
+    "temprano_w1_w4": {
+     "n_semanas_jugadas": 4,
+     "deposito": 9677.0,
+     "retiro": 4500.0,
+     "neto": -5177.0,
+     "roi": -0.53,
+     "semanas_ganadoras": 0,
+     "semanas_perdedoras": 4,
+     "semanas_sin_retiro": 1,
+     "hit_rate_semanal": 0.0,
+     "promedio_neto_semana": -1294.25,
+     "mejor_semana": "Week 1",
+     "peor_semana": "Week 4"
+    },
+    "medio_w5_w12": {
+     "n_semanas_jugadas": 8,
+     "deposito": 33443.38,
+     "retiro": 49102.0,
+     "neto": 15658.62,
+     "roi": 0.47,
+     "semanas_ganadoras": 5,
+     "semanas_perdedoras": 3,
+     "semanas_sin_retiro": 0,
+     "hit_rate_semanal": 0.62,
+     "promedio_neto_semana": 1957.33,
+     "mejor_semana": "Week 6",
+     "peor_semana": "Week 12"
+    },
+    "tarde_w13_w18": {
+     "n_semanas_jugadas": 6,
+     "deposito": 27656.0,
+     "retiro": 29968.23,
+     "neto": 2312.23,
+     "roi": 0.08,
+     "semanas_ganadoras": 2,
+     "semanas_perdedoras": 4,
+     "semanas_sin_retiro": 1,
+     "hit_rate_semanal": 0.33,
+     "promedio_neto_semana": 385.37,
+     "mejor_semana": "Week 14",
+     "peor_semana": "Week 16"
+    }
+   },
+   "rachas": {
+    "max_semanas_perdedoras_seguidas": 5,
+    "peor_drawdown_en_racha": -11135.0
+   },
+   "meses": [
+    {
+     "month": "Agosto",
+     "deposito": 6359.0,
+     "retiro": 5976.0,
+     "neto": -383.0,
+     "roi": -0.06
+    },
+    {
+     "month": "Septiembre",
+     "deposito": 9677.0,
+     "retiro": 4500.0,
+     "neto": -5177.0,
+     "roi": -0.53
+    },
+    {
+     "month": "Octubre",
+     "deposito": 12617.5,
+     "retiro": 29625.0,
+     "neto": 17007.5,
+     "roi": 1.35
+    },
+    {
+     "month": "Noviembre",
+     "deposito": 26225.88,
+     "retiro": 26377.0,
+     "neto": 151.12,
+     "roi": 0.01
+    },
+    {
+     "month": "Diciembre",
+     "deposito": 19356.0,
+     "retiro": 21218.23,
+     "neto": 1862.23,
+     "roi": 0.1
+    },
+    {
+     "month": "Enero",
+     "deposito": 9000.0,
+     "retiro": 10950.0,
+     "neto": 1950.0,
+     "roi": 0.22
+    },
+    {
+     "month": "Super Bowl",
+     "deposito": 2000.0,
+     "retiro": 0.0,
+     "neto": -2000.0,
+     "roi": -1.0
+    }
+   ],
+   "acumulado": [
+    {
+     "label": "Week 1 Pre",
+     "neto": 1007.0,
+     "acumulado": 1007.0
+    },
+    {
+     "label": "Week 2 Pre",
+     "neto": -807.0,
+     "acumulado": 200.0
+    },
+    {
+     "label": "Week 3 Pre",
+     "neto": 1307.0,
+     "acumulado": 1507.0
+    },
+    {
+     "label": "Week 4 Pre",
+     "neto": -1890.0,
+     "acumulado": -383.0
+    },
+    {
+     "label": "Week 1",
+     "neto": -825.0,
+     "acumulado": -1208.0
+    },
+    {
+     "label": "Week 2",
+     "neto": -1000.0,
+     "acumulado": -2208.0
+    },
+    {
+     "label": "Week 3",
+     "neto": -909.0,
+     "acumulado": -3117.0
+    },
+    {
+     "label": "Week 4",
+     "neto": -2443.0,
+     "acumulado": -5560.0
+    },
+    {
+     "label": "Week 5",
+     "neto": 1471.38,
+     "acumulado": -4088.62
+    },
+    {
+     "label": "Week 6",
+     "neto": 9061.12,
+     "acumulado": 4972.5
+    },
+    {
+     "label": "Week 7",
+     "neto": 6025.0,
+     "acumulado": 10997.5
+    },
+    {
+     "label": "Week 8",
+     "neto": 450.0,
+     "acumulado": 11447.5
+    },
+    {
+     "label": "Week 9",
+     "neto": -750.0,
+     "acumulado": 10697.5
+    },
+    {
+     "label": "Week 10",
+     "neto": 4075.0,
+     "acumulado": 14772.5
+    },
+    {
+     "label": "Week 11",
+     "neto": -2250.88,
+     "acumulado": 12521.62
+    },
+    {
+     "label": "Week 12",
+     "neto": -2423.0,
+     "acumulado": 10098.62
+    },
+    {
+     "label": "Week 13",
+     "neto": 1500.0,
+     "acumulado": 11598.62
+    },
+    {
+     "label": "Week 14",
+     "neto": 10647.23,
+     "acumulado": 22245.85
+    },
+    {
+     "label": "Week 15",
+     "neto": -3295.0,
+     "acumulado": 18950.85
+    },
+    {
+     "label": "Week 16",
+     "neto": -3900.0,
+     "acumulado": 15050.85
+    },
+    {
+     "label": "Week 17",
+     "neto": -1590.0,
+     "acumulado": 13460.85
+    },
+    {
+     "label": "Week 18",
+     "neto": -1050.0,
+     "acumulado": 12410.85
+    },
+    {
+     "label": "Super Wild Card",
+     "neto": -1300.0,
+     "acumulado": 11110.85
+    },
+    {
+     "label": "Divisional",
+     "neto": 3750.0,
+     "acumulado": 14860.85
+    },
+    {
+     "label": "Conference",
+     "neto": 800.0,
+     "acumulado": 15660.85
+    },
+    {
+     "label": "Natty",
+     "neto": -250.0,
+     "acumulado": 15410.85
+    },
+    {
+     "label": "Super Bowl",
+     "neto": -2000.0,
+     "acumulado": 13410.85
+    }
+   ],
+   "peor_acumulado": -5560.0,
+   "mejor_acumulado": 22245.85,
+   "stopped_after": null,
+   "lessons_learned": [
+    "No apostar en pre season ni las primeras dos semanas",
+    "Mid season es el sweetspot",
+    "No apostar si no vi los juegos una semana antes",
+    "No apostar muy cerca a los juegos con prisa"
+   ]
+  },
+  {
+   "season": 2025,
+   "global": {
+    "n_semanas_jugadas": 14,
+    "deposito": 36726.0,
+    "retiro": 28883.0,
+    "neto": -7843.0,
+    "roi": -0.21,
+    "semanas_ganadoras": 5,
+    "semanas_perdedoras": 9,
+    "semanas_sin_retiro": 7,
+    "hit_rate_semanal": 0.36,
+    "promedio_neto_semana": -560.21,
+    "mejor_semana": "Week 2 Pre",
+    "peor_semana": "Week 3"
+   },
+   "por_fase": {
+    "pre": {
+     "n_semanas_jugadas": 3,
+     "deposito": 2000.0,
+     "retiro": 5464.0,
+     "neto": 3464.0,
+     "roi": 1.73,
+     "semanas_ganadoras": 2,
+     "semanas_perdedoras": 1,
+     "semanas_sin_retiro": 0,
+     "hit_rate_semanal": 0.67,
+     "promedio_neto_semana": 1154.67,
+     "mejor_semana": "Week 2 Pre",
+     "peor_semana": "Week 3 Pre"
+    },
+    "reg": {
+     "n_semanas_jugadas": 11,
+     "deposito": 34726.0,
+     "retiro": 23419.0,
+     "neto": -11307.0,
+     "roi": -0.33,
+     "semanas_ganadoras": 3,
+     "semanas_perdedoras": 8,
+     "semanas_sin_retiro": 7,
+     "hit_rate_semanal": 0.27,
+     "promedio_neto_semana": -1027.91,
+     "mejor_semana": "Week 7",
+     "peor_semana": "Week 3"
+    },
+    "post": {
+     "n_semanas_jugadas": 0,
+     "deposito": 0.0,
+     "retiro": 0.0,
+     "neto": 0.0,
+     "roi": null,
+     "semanas_ganadoras": 0,
+     "semanas_perdedoras": 0,
+     "semanas_sin_retiro": 0,
+     "hit_rate_semanal": null,
+     "promedio_neto_semana": null,
+     "mejor_semana": null,
+     "peor_semana": null
+    }
+   },
+   "temporada_regular_por_tramo": {
+    "temprano_w1_w4": {
+     "n_semanas_jugadas": 4,
+     "deposito": 20146.0,
+     "retiro": 13174.0,
+     "neto": -6972.0,
+     "roi": -0.35,
+     "semanas_ganadoras": 1,
+     "semanas_perdedoras": 3,
+     "semanas_sin_retiro": 2,
+     "hit_rate_semanal": 0.25,
+     "promedio_neto_semana": -1743.0,
+     "mejor_semana": "Week 1",
+     "peor_semana": "Week 3"
+    },
+    "medio_w5_w12": {
+     "n_semanas_jugadas": 7,
+     "deposito": 14580.0,
+     "retiro": 10245.0,
+     "neto": -4335.0,
+     "roi": -0.3,
+     "semanas_ganadoras": 2,
+     "semanas_perdedoras": 5,
+     "semanas_sin_retiro": 5,
+     "hit_rate_semanal": 0.29,
+     "promedio_neto_semana": -619.29,
+     "mejor_semana": "Week 7",
+     "peor_semana": "Week 6"
+    },
+    "tarde_w13_w18": {
+     "n_semanas_jugadas": 0,
+     "deposito": 0.0,
+     "retiro": 0.0,
+     "neto": 0.0,
+     "roi": null,
+     "semanas_ganadoras": 0,
+     "semanas_perdedoras": 0,
+     "semanas_sin_retiro": 0,
+     "hit_rate_semanal": null,
+     "promedio_neto_semana": null,
+     "mejor_semana": null,
+     "peor_semana": null
+    }
+   },
+   "rachas": {
+    "max_semanas_perdedoras_seguidas": 5,
+    "peor_drawdown_en_racha": -13053.0
+   },
+   "meses": [
+    {
+     "month": "Agosto",
+     "deposito": 2000.0,
+     "retiro": 5464.0,
+     "neto": 3464.0,
+     "roi": 1.73
+    },
+    {
+     "month": "Septiembre",
+     "deposito": 20146.0,
+     "retiro": 13174.0,
+     "neto": -6972.0,
+     "roi": -0.35
+    },
+    {
+     "month": "Octubre",
+     "deposito": 10280.0,
+     "retiro": 10245.0,
+     "neto": -35.0,
+     "roi": -0.0
+    },
+    {
+     "month": "Noviembre",
+     "deposito": 4300.0,
+     "retiro": 0.0,
+     "neto": -4300.0,
+     "roi": -1.0
+    },
+    {
+     "month": "Diciembre",
+     "deposito": 0.0,
+     "retiro": 0.0,
+     "neto": 0.0,
+     "roi": null
+    },
+    {
+     "month": "Enero",
+     "deposito": 0.0,
+     "retiro": 0.0,
+     "neto": 0.0,
+     "roi": null
+    },
+    {
+     "month": "Super Bowl",
+     "deposito": 0.0,
+     "retiro": 0.0,
+     "neto": 0.0,
+     "roi": null
+    }
+   ],
+   "acumulado": [
+    {
+     "label": "Week 1 Pre",
+     "neto": 505.0,
+     "acumulado": 505.0
+    },
+    {
+     "label": "Week 2 Pre",
+     "neto": 3061.0,
+     "acumulado": 3566.0
+    },
+    {
+     "label": "Week 3 Pre",
+     "neto": -102.0,
+     "acumulado": 3464.0
+    },
+    {
+     "label": "Week 1",
+     "neto": 2081.0,
+     "acumulado": 5545.0
+    },
+    {
+     "label": "Week 2",
+     "neto": -2403.0,
+     "acumulado": 3142.0
+    },
+    {
+     "label": "Week 3",
+     "neto": -4350.0,
+     "acumulado": -1208.0
+    },
+    {
+     "label": "Week 4",
+     "neto": -2300.0,
+     "acumulado": -3508.0
+    },
+    {
+     "label": "Week 5",
+     "neto": -1000.0,
+     "acumulado": -4508.0
+    },
+    {
+     "label": "Week 6",
+     "neto": -3000.0,
+     "acumulado": -7508.0
+    },
+    {
+     "label": "Week 7",
+     "neto": 2960.0,
+     "acumulado": -4548.0
+    },
+    {
+     "label": "Week 8",
+     "neto": 1005.0,
+     "acumulado": -3543.0
+    },
+    {
+     "label": "Week 9",
+     "neto": -1400.0,
+     "acumulado": -4943.0
+    },
+    {
+     "label": "Week 10",
+     "neto": -1400.0,
+     "acumulado": -6343.0
+    },
+    {
+     "label": "Week 11",
+     "neto": -1500.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 12",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 13",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 14",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 15",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 16",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 17",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Week 18",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Super Wild Card",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Divisional",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Conference",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Natty",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    },
+    {
+     "label": "Super Bowl",
+     "neto": 0.0,
+     "acumulado": -7843.0
+    }
+   ],
+   "peor_acumulado": -7843.0,
+   "mejor_acumulado": 5545.0,
+   "stopped_after": "Week 11",
+   "lessons_learned": [
+    "No apostar en pre season ni las primeras dos semanas",
+    "Mid season es el sweetspot",
+    "No apostar si no vi los juegos una semana antes",
+    "No apostar muy cerca a los juegos con prisa"
+   ]
+  }
+ ],
+ "reglas_con_datos": [
+  "2024 pretemporada: neto -383 MXN en 4 semanas (hit rate semanal 50%).",
+  "2024 semanas 1 a 4: neto -5,177 MXN, 0 de 4 semanas ganadoras.",
+  "2024 semanas 5 a 12: neto +15,659 MXN, 5 de 8 semanas ganadoras.",
+  "2024 racha más larga de semanas perdedoras: 5 (drawdown -11,135 MXN).",
+  "2025 pretemporada: neto +3,464 MXN en 3 semanas (hit rate semanal 67%).",
+  "2025 semanas 1 a 4: neto -6,972 MXN, 1 de 4 semanas ganadoras.",
+  "2025 semanas 5 a 12: neto -4,335 MXN, 2 de 7 semanas ganadoras.",
+  "2025 racha más larga de semanas perdedoras: 5 (drawdown -13,053 MXN)."
+ ],
+ "combined": {
+  "deposito": 121961.38,
+  "retiro": 127529.23,
+  "neto": 5567.85
+ }
+}

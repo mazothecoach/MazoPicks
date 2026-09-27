@@ -1,0 +1,85 @@
+{
+  "_schema": {
+    "ticket_id": "ID del boleto en la casa. Deduplicar por este campo.",
+    "book": "playdoit | draftea | app_decimal (si no se identifica la casa)",
+    "book_confidence": "confirmado | inferido",
+    "placed_at": "ISO local CDMX (YYYY-MM-DDTHH:MM)",
+    "season": 2026,
+    "week": "semana NFL del boleto (entero)",
+    "type": "single | parlay | sgp",
+    "legs_count": "número de legs",
+    "stake_mxn": "monto apostado",
+    "free_bet": "true si fue apuesta gratis (stake no sale del bankroll)",
+    "boost": "true si tuvo boost de momio",
+    "odds_american": "momio americano total o null",
+    "odds_decimal": "momio decimal total o null",
+    "payout_mxn": "cobrado (0 si perdió)",
+    "status": "won | lost | cashed_out | open | void",
+    "followed_channel": "The Sauce Picks si el boleto sigue un pick del canal, null si es idea propia, mixto si combina",
+    "channel_pick_ids": "ids de picks del canal que se siguieron (data/picks)",
+    "screenshot": "nombre del archivo en Drive/capturas_boletos",
+    "legs_visible": "false si la captura estaba colapsada y no se ven las legs",
+    "validated": "true cuando el usuario confirmó la extracción",
+    "legs": [
+      {"game": "AWAY @ HOME", "market": "moneyline | spread | total | player_prop | team_prop", "category": "ml | ml_1h | spread | total | td_scorer | pass_yds | pass_comp | rush_yds | rec_yds | receptions | other", "selection": "texto", "odds_decimal": "momio de la leg o null", "result": "win | loss | push | void | null", "team": "abreviatura del equipo involucrado", "source": "propio | sauce | otro"}
+    ]
+  },
+  "tickets": [
+    {
+      "ticket_id": "5459407998",
+      "book": "playdoit",
+      "book_confidence": "confirmado",
+      "placed_at": "2026-09-24T18:10",
+      "season": 2026,
+      "week": 3,
+      "type": "sgp",
+      "legs_count": 2,
+      "stake_mxn": 500.0,
+      "free_bet": false,
+      "boost": true,
+      "odds_american": 225,
+      "odds_decimal": 3.25,
+      "odds_before_boost_american": 190,
+      "payout_mxn": 0.0,
+      "status": "lost",
+      "followed_channel": null,
+      "channel_pick_ids": [],
+      "screenshot": "IMG_9160.png",
+      "legs_visible": true,
+      "validated": false,
+      "notes": "Extraído del plan inicial. Pendiente validar contra la captura en Drive.",
+      "legs": [
+        {"game": "ATL @ GB", "market": "moneyline", "category": "ml_1h", "selection": "GB Packers gana 1a mitad (1x2)", "odds_decimal": null, "result": "loss", "team": "GB", "source": "propio"},
+        {"game": "ATL @ GB", "market": "player_prop", "category": "pass_comp", "selection": "Jordan Love 20+ pases completados", "odds_decimal": null, "result": "win", "team": "GB", "source": "propio"}
+      ]
+    },
+    {
+      "ticket_id": "TKT_IMG_9174",
+      "book": "draftea",
+      "book_confidence": "inferido",
+      "placed_at": "2026-09-20T02:31",
+      "season": 2026,
+      "week": 2,
+      "type": "parlay",
+      "legs_count": 3,
+      "stake_mxn": 50.0,
+      "free_bet": true,
+      "boost": false,
+      "odds_american": 453,
+      "odds_decimal": 5.53,
+      "payout_mxn": 0.0,
+      "status": "lost",
+      "followed_channel": null,
+      "channel_pick_ids": [],
+      "screenshot": "IMG_9174.jpeg",
+      "legs_visible": true,
+      "validated": false,
+      "notes": "App con tema oscuro, momios decimales (1.57x), Ticket ID TKT_..., apuesta gratis. Inferido que es Draftea por el formato; confirmar. Apostado de madrugada (02:31).",
+      "legs": [
+        {"game": "GB @ NYJ", "market": "moneyline", "category": "ml", "selection": "Packers gana vs Jets", "odds_decimal": 1.57, "result": "win", "team": "GB", "source": "propio"},
+        {"game": "TB @ NYJ", "market": "player_prop", "category": "td_scorer", "selection": "Emeka Egbuka anota 1+ TD", "odds_decimal": 2.60, "result": "win", "team": "TB", "source": "propio", "notes": "Partido inferido por el jugador (TB). Verificar en la captura."},
+        {"game": "DET @ ?", "market": "player_prop", "category": "td_scorer", "selection": "David Montgomery anota 1+ TD", "odds_decimal": 1.60, "result": "loss", "team": "DET", "source": "propio", "notes": "Partido inferido por el jugador (DET). Verificar en la captura."}
+      ]
+    }
+  ]
+}

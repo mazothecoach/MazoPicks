@@ -1,0 +1,17 @@
+[
+  {
+    "name": "The Sauce Picks",
+    "handle": "@KyleKirms",
+    "url": "https://www.youtube.com/@KyleKirms",
+    "league": "NFL",
+    "title_keywords": ["week", "picks", "nfl"],
+    "active": true,
+    "notes": "Publica varios videos por semana NFL: jueves (TNF), sábado o domingo (picks del domingo), y shows en vivo. Todos se agrupan en la misma semana.",
+    "known_videos": [
+      {"video_id": "4o0fpns6Gm0", "title": "Week 3 NFL Picks with Kyle Kirms - Sunday September 27th", "week": 3, "season": 2026},
+      {"video_id": "gM-02rLbR9w", "title": "Falcons vs Packers Thursday NFL Week 3 Picks with Kyle Kirms", "week": 3, "season": 2026},
+      {"video_id": "3zqeqSP3rao", "title": "NFL Football Week 3 Live Picks With Kyle Kirms | The Sauce Network", "week": 3, "season": 2026},
+      {"video_id": "NRYYHPXEjbc", "title": "Steelers vs Raiders Week 3 NFL Picks | Kyle Kirms Predictions | The Sauce Network", "week": 3, "season": 2026}
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "source": "NFL BETS.xlsx (Drive), hoja Sheet2 'Distribucion'",
+  "presupuesto_semanal_mxn": 1000,
+  "buckets": [
+    {"name": "2 mejores jugadas",     "mxn": 500, "share": 0.50, "descripcion": "Las dos apuestas con más convicción de la semana (singles o SGP corto)"},
+    {"name": "Crear apuesta 1",       "mxn": 150, "share": 0.15, "descripcion": "Bet builder / SGP propio"},
+    {"name": "Crear apuesta 2",       "mxn": 150, "share": 0.15, "descripcion": "Bet builder / SGP propio"},
+    {"name": "Parlay soñador 1",      "mxn": 150, "share": 0.15, "descripcion": "Parlay largo de momio alto"},
+    {"name": "Parlay puti soñador 2", "mxn": 50,  "share": 0.05, "descripcion": "Parlay lotería, monto mínimo"}
+  ],
+  "restante": 0
+}

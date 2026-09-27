@@ -1,0 +1,15 @@
+{
+  "season": 2026,
+  "week": 3,
+  "generated_at": "2026-09-27T13:30:00-06:00",
+  "status": "pendiente_transcripcion",
+  "status_note": "YouTube está bloqueado desde la nube de Claude. Las transcripciones se generan en la compu local con scripts/fetch_transcripts.py y después Claude extrae los picks a este archivo.",
+  "sources": [
+    {"channel": "The Sauce Picks", "video_id": "4o0fpns6Gm0", "title": "Week 3 NFL Picks with Kyle Kirms - Sunday September 27th", "url": "https://www.youtube.com/watch?v=4o0fpns6Gm0", "published": "2026-09-26", "transcript_method": null},
+    {"channel": "The Sauce Picks", "video_id": "gM-02rLbR9w", "title": "Falcons vs Packers Thursday NFL Week 3 Picks with Kyle Kirms", "url": "https://www.youtube.com/watch?v=gM-02rLbR9w", "published": null, "transcript_method": null},
+    {"channel": "The Sauce Picks", "video_id": "3zqeqSP3rao", "title": "NFL Football Week 3 Live Picks With Kyle Kirms | The Sauce Network", "url": "https://www.youtube.com/watch?v=3zqeqSP3rao", "published": null, "transcript_method": null},
+    {"channel": "The Sauce Picks", "video_id": "NRYYHPXEjbc", "title": "Steelers vs Raiders Week 3 NFL Picks | Kyle Kirms Predictions | The Sauce Network", "url": "https://www.youtube.com/watch?v=NRYYHPXEjbc", "published": null, "transcript_method": null}
+  ],
+  "picks": [],
+  "insights": []
+}
