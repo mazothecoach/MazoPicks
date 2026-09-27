@@ -2,18 +2,22 @@
  "generated_at": "2026-09-27",
  "season": 2026,
  "limite_perdida_mxn": 10000.0,
- "neto_acumulado_mxn": 0.0,
- "restante_antes_de_parar_mxn": 10000.0,
- "pct_del_limite_usado": -0.0,
+ "neto_acumulado_mxn": -2350.0,
+ "restante_antes_de_parar_mxn": 7650.0,
+ "pct_del_limite_usado": 0.235,
  "nivel": "verde",
  "estado": "ACTIVO",
- "semanas_capturadas": 0,
+ "semanas_capturadas": 3,
  "semanas_ganadoras": 0,
  "semanas_perdedoras": 0,
- "deposito_total": 0,
- "retiro_total": 0,
+ "semanas_con_retiro_pendiente": 3,
+ "deposito_total": 7150.0,
+ "retiro_total": 4800.0,
+ "retiros_sin_asignar": 4800.0,
+ "retiros_sin_asignar_nota": "Retiros totales reportados el 27 sep 2026 sin desglose por semana. Cuando se conozca la semana, mover el monto a retiro de esa semana y restarlo de aquí.",
+ "nota_retiros": "Los retiros sin asignar sí cuentan en el neto total y en el stop loss, pero no en el neto de ninguna semana porque no se sabe en qué semana se hicieron. Las semanas con retiro pendiente muestran neto pendiente; en el acumulado, los retiros sin asignar entran en la última semana con depósito.",
  "presupuesto_semanal_mxn": 1000.0,
- "semanas_de_presupuesto_restantes": 10.0,
+ "semanas_de_presupuesto_restantes": 7.7,
  "contraste_boletos": {
   "n_liquidados": 2,
   "neto_mxn": -500.0,
@@ -26,35 +30,43 @@
    "label": "Week 1",
    "phase": "reg",
    "dates": "8-14 sep",
-   "deposito": 0,
-   "retiro": 0,
-   "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "deposito": 1150,
+   "retiro": null,
+   "filled": true,
+   "note": "Retiro de la semana sin desglose: ver retiros_sin_asignar.",
+   "neto": null,
+   "acumulado": -1150.0
   },
   {
    "idx": 2,
    "label": "Week 2",
    "phase": "reg",
    "dates": "15-21 sep",
-   "deposito": 0,
-   "retiro": 0,
-   "filled": false,
-   "note": "Hay boletos de esta semana en capturas (20 sep). Capturar depósito/retiro.",
-   "neto": 0.0,
-   "acumulado": 0.0
+   "deposito": 3700,
+   "deposito_detalle": [
+    500,
+    200,
+    1500,
+    1500
+   ],
+   "retiro": null,
+   "filled": true,
+   "note": "Depósito en 4 movimientos (ver deposito_detalle). Hay boletos de esta semana en capturas (20 sep). Retiro de la semana sin desglose: ver retiros_sin_asignar.",
+   "neto": null,
+   "acumulado": -4850.0
   },
   {
    "idx": 3,
    "label": "Week 3",
    "phase": "reg",
    "dates": "22-28 sep",
-   "deposito": 0,
-   "retiro": 0,
-   "filled": false,
-   "note": "Hay boletos de esta semana en capturas (24 sep).",
-   "neto": 0.0,
-   "acumulado": 0.0
+   "deposito": 2300,
+   "retiro": null,
+   "filled": true,
+   "note": "Hay boletos de esta semana en capturas (24 sep). Retiro de la semana sin desglose: ver retiros_sin_asignar.",
+   "neto": null,
+   "acumulado_incluye_sin_asignar": true,
+   "acumulado": -2350.0
   },
   {
    "idx": 4,
@@ -62,10 +74,10 @@
    "phase": "reg",
    "dates": "29 sep-5 oct",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 5,
@@ -73,10 +85,10 @@
    "phase": "reg",
    "dates": "6-12 oct",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 6,
@@ -84,10 +96,10 @@
    "phase": "reg",
    "dates": "13-19 oct",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 7,
@@ -95,10 +107,10 @@
    "phase": "reg",
    "dates": "20-26 oct",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 8,
@@ -106,10 +118,10 @@
    "phase": "reg",
    "dates": "27 oct-2 nov",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 9,
@@ -117,10 +129,10 @@
    "phase": "reg",
    "dates": "3-9 nov",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 10,
@@ -128,10 +140,10 @@
    "phase": "reg",
    "dates": "10-16 nov",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 11,
@@ -139,10 +151,10 @@
    "phase": "reg",
    "dates": "17-23 nov",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 12,
@@ -150,10 +162,10 @@
    "phase": "reg",
    "dates": "24-30 nov",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 13,
@@ -161,10 +173,10 @@
    "phase": "reg",
    "dates": "1-7 dic",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 14,
@@ -172,10 +184,10 @@
    "phase": "reg",
    "dates": "8-14 dic",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 15,
@@ -183,10 +195,10 @@
    "phase": "reg",
    "dates": "15-21 dic",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 16,
@@ -194,10 +206,10 @@
    "phase": "reg",
    "dates": "22-28 dic",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 17,
@@ -205,10 +217,10 @@
    "phase": "reg",
    "dates": "29 dic-4 ene",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 18,
@@ -216,10 +228,10 @@
    "phase": "reg",
    "dates": "5-11 ene",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 19,
@@ -227,10 +239,10 @@
    "phase": "post",
    "dates": "12-18 ene",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 20,
@@ -238,10 +250,10 @@
    "phase": "post",
    "dates": "19-25 ene",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 21,
@@ -249,10 +261,10 @@
    "phase": "post",
    "dates": "26 ene-1 feb",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   },
   {
    "idx": 22,
@@ -260,10 +272,10 @@
    "phase": "post",
    "dates": "feb",
    "deposito": 0,
-   "retiro": 0,
+   "retiro": null,
    "filled": false,
-   "neto": 0.0,
-   "acumulado": 0.0
+   "neto": null,
+   "acumulado": -2350.0
   }
  ]
 }

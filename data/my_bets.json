@@ -76,9 +76,9 @@
       "validated": false,
       "notes": "App con tema oscuro, momios decimales (1.57x), Ticket ID TKT_..., apuesta gratis. Inferido que es Draftea por el formato; confirmar. Apostado de madrugada (02:31).",
       "legs": [
-        {"game": "GB @ NYJ", "market": "moneyline", "category": "ml", "selection": "Packers gana vs Jets", "odds_decimal": 1.57, "result": "win", "team": "GB", "source": "propio"},
-        {"game": "TB @ NYJ", "market": "player_prop", "category": "td_scorer", "selection": "Emeka Egbuka anota 1+ TD", "odds_decimal": 2.60, "result": "win", "team": "TB", "source": "propio", "notes": "Partido inferido por el jugador (TB). Verificar en la captura."},
-        {"game": "DET @ ?", "market": "player_prop", "category": "td_scorer", "selection": "David Montgomery anota 1+ TD", "odds_decimal": 1.60, "result": "loss", "team": "DET", "source": "propio", "notes": "Partido inferido por el jugador (DET). Verificar en la captura."}
+        {"game": "GB vs NYJ (sede por confirmar)", "market": "moneyline", "category": "ml", "selection": "Packers gana vs Jets", "odds_decimal": 1.57, "result": "win", "team": "GB", "source": "propio", "notes": "Partido inferido del texto de la selección (Packers vs Jets); no se sabe quién es local. Verificar contra la captura."},
+        {"game": "TB vs ? (rival por confirmar)", "market": "player_prop", "category": "td_scorer", "selection": "Emeka Egbuka anota 1+ TD", "odds_decimal": 2.60, "result": "win", "team": "TB", "source": "propio", "notes": "Partido inferido del jugador (Emeka Egbuka, TB); rival y sede no confirmados. Verificar contra la captura."},
+        {"game": "DET vs ? (rival por confirmar)", "market": "player_prop", "category": "td_scorer", "selection": "David Montgomery anota 1+ TD", "odds_decimal": 1.60, "result": "loss", "team": "DET", "source": "propio", "notes": "Partido inferido del jugador (David Montgomery, DET); rival y sede no confirmados. Verificar contra la captura."}
       ]
     }
   ]

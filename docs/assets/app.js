@@ -499,6 +499,7 @@
     return [
       panelTitle(tab.label, `Actualizado ${fmtDate(st.generated_at)}`),
       statusCard(st, cfg),
+      pendingWithdrawals(st),
       bankrollKpis(st),
       `<div class="block">${bankrollChart(st, view)}</div>`,
       block('Semana por semana', bankrollTable(st)),
@@ -537,6 +538,22 @@
       '</section>';
   }
 
+  /** Aviso cuando hay semanas con depósito cuyo retiro aún no se conoce. */
+  function pendingWithdrawals(st) {
+    const n = toNum(st.semanas_con_retiro_pendiente);
+    if (!n || n <= 0) return '';
+    const title = n === 1 ? '1 semana con retiro pendiente' : `${fmtNum(n)} semanas con retiro pendiente`;
+    return `<div class="block">${banner('warn', title, st.nota_retiros || 'Hay semanas con depósito cuyo retiro todavía no se conoce.')}</div>`;
+  }
+
+  /** Monto de retiros sin asignar: número, 'oculto' o null si no hay. */
+  function unassignedOf(st) {
+    const v = st.retiros_sin_asignar;
+    if (v === 'oculto') return v;
+    const n = toNum(v);
+    return n ? n : null;
+  }
+
   function levelsLegend(cfg) {
     const levels = arr(obj(cfg.stop_loss).warning_levels).filter(isObj);
     if (!levels.length) return '';
@@ -555,14 +572,19 @@
     const limit = toNum(st.limite_perdida_mxn);
     const g = fmtNum(st.semanas_ganadoras);
     const p = fmtNum(st.semanas_perdedoras);
+    const unassigned = unassignedOf(st);
+    const pending = toNum(st.semanas_con_retiro_pendiente) || 0;
+    const retiros = `retiros ${esc(fmtMoney(st.retiro_total))}` +
+      (unassigned !== null ? ` (${esc(fmtMoney(unassigned))} sin asignar por semana)` : '');
     return '<div class="block kpis kpis-6">' + [
       kpi('Neto acumulado', money(st.neto_acumulado_mxn, { signed: true }),
-        `Depósitos ${esc(fmtMoney(st.deposito_total))}, retiros ${esc(fmtMoney(st.retiro_total))}`),
+        `Depósitos ${esc(fmtMoney(st.deposito_total))}, ${retiros}`),
       kpi('Límite de pérdida', esc(fmtMoney(limit === null ? st.limite_perdida_mxn : -limit)), 'Stop loss de la temporada'),
       kpi('Restante antes de parar', esc(fmtMoney(st.restante_antes_de_parar_mxn)),
         `${esc(fmtPct(st.pct_del_limite_usado, { digits: 1 }))} del límite usado`),
       kpi('Semanas capturadas', esc(fmtNum(st.semanas_capturadas)), `de ${weeks.length} en el calendario`),
-      kpi('Ganadoras / perdedoras', `<span class="pos">${esc(g)}</span> / <span class="neg">${esc(p)}</span>`, 'semanas con neto a favor / en contra'),
+      kpi('Ganadoras / perdedoras', `<span class="pos">${esc(g)}</span> / <span class="neg">${esc(p)}</span>`,
+        pending > 0 ? `semanas con neto a favor / en contra; ${esc(fmtNum(pending))} con retiro pendiente no cuentan` : 'semanas con neto a favor / en contra'),
       kpi('Semanas de presupuesto restantes', esc(fmtNum(st.semanas_de_presupuesto_restantes, 1)),
         `a ${esc(fmtMoney(st.presupuesto_semanal_mxn))} por semana`),
     ].join('') + '</div>';
@@ -574,25 +596,31 @@
     const limit = toNum(st.limite_perdida_mxn);
     const lastFilled = lastIndex(weeks, (w) => w.filled);
     const builtHidden = weeks.some((w) => w.acumulado === 'oculto');
+    const flagged = weeks.findIndex((w) => w.acumulado_incluye_sin_asignar);
     let sub = lastFilled < 0
       ? 'Aún no hay semanas capturadas: la línea azul aparece al capturar depósito y retiro.'
       : `Hasta ${weeks[lastFilled].label}. La línea roja punteada es el stop loss.`;
+    if (flagged >= 0 && flagged <= lastFilled) sub += ` El punto en rombo (${weeks[flagged].label}) incluye los retiros sin asignar por semana.`;
     if (builtHidden) sub = 'Montos ocultos en la publicación: solo se muestra el límite.';
     return view.chart({
       title: 'Neto acumulado por semana',
       sub,
       aria: 'Gráfica de línea del neto acumulado por semana contra el límite de pérdida',
-      config: () => bankrollChartConfig(weeks, limit, lastFilled),
+      config: () => bankrollChartConfig(weeks, limit, lastFilled, unassignedOf(st)),
       fallback: '<p class="muted small">Los datos están en la tabla semana por semana.</p>',
     });
   }
 
-  function bankrollChartConfig(weeks, limit, lastFilled) {
+  function bankrollChartConfig(weeks, limit, lastFilled, unassigned) {
     const labels = weeks.map((w) => shortWeek(w.label));
     const acc = weeks.map((w, i) => (i <= lastFilled && isNum(w.acumulado) ? w.acumulado : null));
+    const withUnassigned = (i) => Boolean(obj(weeks[i]).acumulado_incluye_sin_asignar);
     const datasets = [{
       label: 'Neto acumulado', data: acc, borderColor: COLORS.series[0], backgroundColor: COLORS.series[0],
-      borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, pointBorderColor: COLORS.surface, pointBorderWidth: 2,
+      borderWidth: 2, pointBorderColor: COLORS.surface, pointBorderWidth: 2,
+      pointStyle: (ctx) => (withUnassigned(ctx.dataIndex) ? 'rectRot' : 'circle'),
+      pointRadius: (ctx) => (withUnassigned(ctx.dataIndex) ? 6 : 4),
+      pointHoverRadius: (ctx) => (withUnassigned(ctx.dataIndex) ? 8 : 6),
       tension: 0, spanGaps: false,
     }];
     if (limit !== null) {
@@ -621,6 +649,10 @@
                 return `${w.label || ''}${w.dates ? ` (${w.dates})` : ''}`;
               },
               label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.parsed.y, { signed: true })}`,
+              afterLabel: (ctx) => {
+                if (ctx.datasetIndex !== 0 || !withUnassigned(ctx.dataIndex)) return '';
+                return `Incluye retiros sin asignar por semana${unassigned !== null ? ` (${fmtMoney(unassigned)})` : ''}`;
+              },
             },
           },
         },
@@ -631,21 +663,40 @@
   function bankrollTable(st) {
     const weeks = arr(st.weeks).filter(isObj);
     if (!weeks.length) return empty('Sin semanas.');
+    const pending = '<span class="pending" title="Retiro de la semana todavía sin desglose">pendiente</span>';
+    const detail = (w) => {
+      const list = arr(w.deposito_detalle);
+      if (list.length < 2 || state.hide || !list.every(isNum)) return '';
+      return `<span class="cell-note">${esc(list.map((v) => fmtMoney(v, { unit: false })).join(' + '))}</span>`;
+    };
     const rows = weeks.map((w) => ({
       cls: w.filled ? '' : 'dim',
       cells: [
         `<strong>${esc(w.label || NA)}</strong>${w.note ? `<span class="cell-note">${esc(w.note)}</span>` : ''}`,
         `<span class="num">${esc(w.dates || NA)}</span>`,
-        numCell(esc(fmtMoney(w.deposito, { unit: false }))),
-        numCell(esc(fmtMoney(w.retiro, { unit: false }))),
-        numCell(money(w.neto, { signed: true, unit: false })),
-        numCell(money(w.acumulado, { signed: true, unit: false })),
+        numCell(esc(fmtMoney(w.deposito, { unit: false })) + detail(w)),
+        numCell(w.retiro == null ? pending : esc(fmtMoney(w.retiro, { unit: false }))),
+        numCell(w.neto == null ? pending : money(w.neto, { signed: true, unit: false })),
+        numCell(money(w.acumulado, { signed: true, unit: false }) +
+          (w.acumulado_incluye_sin_asignar ? '<span class="cell-note">incluye retiros sin asignar</span>' : '')),
         w.filled ? badge('capturada', 'good') : badge('sin capturar', 'neutral'),
       ],
     }));
     const head = ['Semana', 'Fechas', th('Depósito', 'r'), th('Retiro', 'r'), th('Neto', 'r'), th('Acumulado', 'r'), 'Estado'];
     return table(head, rows, 'Tabla semanal del bankroll') +
-      '<p class="block-note" style="margin-top:8px">Montos en MXN. Neto = retiros menos depósitos.</p>';
+      unassignedLine(st) +
+      '<p class="block-note" style="margin-top:8px">Montos en MXN. Neto = retiros menos depósitos. ' +
+      'Pendiente = retiro de la semana todavía sin desglose.</p>';
+  }
+
+  function unassignedLine(st) {
+    const v = unassignedOf(st);
+    if (v === null) return '';
+    const note = st.retiros_sin_asignar_nota || st.nota_retiros;
+    return '<div class="unassigned" role="note">' +
+      `<div class="unassigned-main"><span>Retiros sin asignar por semana:</span> <strong class="num">${esc(fmtMoney(v))}</strong></div>` +
+      (note ? `<p class="note">${esc(note)}</p>` : '') +
+      '</div>';
   }
 
   function distribution(dist, st) {
@@ -1054,7 +1105,7 @@
   }
 
   function historyChart(seasons, view) {
-    const series = seasons.filter((s) => Array.isArray(s.acumulado) && s.acumulado.length);
+    const series = seasons.filter((s) => arr(s.acumulado).some((a) => isObj(a) && isNum(a.acumulado)));
     if (!series.length) return `<div class="card"><h3>Acumulado por temporada</h3>${empty('Montos ocultos en la publicación: no hay acumulado para graficar.')}</div>`;
     const maxLen = Math.max(...series.map((s) => s.acumulado.length));
     const labels = Array.from({ length: maxLen }, (_, i) => String(i + 1));

@@ -32,11 +32,56 @@ def dump(obj, p):
     Path(p).write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+# Claves cuyo valor numérico es un monto MXN. Solo se reemplazan escalares int/float (nunca listas ni dicts,
+# que se recorren). Si el valor es una lista, sus elementos numéricos también se ocultan (deposito_detalle).
+MONEY_KEYS = {
+    "stake_mxn", "payout_mxn", "deposito", "retiro", "neto", "acumulado", "invertido_mxn", "cobrado_mxn", "profit_mxn",
+    "deposito_total", "retiro_total", "neto_acumulado_mxn", "restante_antes_de_parar_mxn", "neto_mxn",
+    "promedio_neto_semana", "peor_drawdown_en_racha", "peor_acumulado", "mejor_acumulado",
+    "mxn", "presupuesto_semanal_mxn", "weekly_budget_mxn", "retiros_sin_asignar", "deposito_detalle", "contraste",
+}
+# El límite del stop loss es una regla, no un saldo: se publica siempre.
+NEVER_HIDE = {"limite_perdida_mxn", "max_net_loss_mxn"}
+# Claves de texto libre donde se enmascaran montos ("neto -383 MXN" -> "neto ••• MXN").
+TEXT_KEYS = {"reglas_con_datos", "regla", "que_si", "que_no", "nota", "notas"}
+AMOUNT_IN_TEXT = re.compile(r"[+-]?\d[\d,]*(?:\.\d+)?\s*MXN")
+HIDDEN = "oculto"
+
+
+def _is_amount(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool)
+
+
+def _mask_text(v):
+    if isinstance(v, str):
+        return AMOUNT_IN_TEXT.sub("••• MXN", v)
+    if isinstance(v, list):
+        return [_mask_text(x) for x in v]
+    return strip_amounts(v)
+
+
+def _hide_money(v):
+    if _is_amount(v):
+        return HIDDEN
+    if isinstance(v, list):
+        return [HIDDEN if _is_amount(x) else strip_amounts(x) for x in v]
+    return strip_amounts(v)
+
+
 def strip_amounts(obj):
-    keys = {"stake_mxn", "payout_mxn", "deposito", "retiro", "neto", "acumulado", "invertido_mxn", "cobrado_mxn", "profit_mxn",
-            "deposito_total", "retiro_total", "neto_acumulado_mxn", "restante_antes_de_parar_mxn", "neto_mxn", "promedio_neto_semana", "peor_drawdown_en_racha", "peor_acumulado", "mejor_acumulado"}
+    """Copia de obj con los montos MXN ocultos (config.site.show_amounts false)."""
     if isinstance(obj, dict):
-        return {k: ("oculto" if k in keys else strip_amounts(v)) for k, v in obj.items()}
+        out = {}
+        for k, v in obj.items():
+            if k in NEVER_HIDE:
+                out[k] = v
+            elif k in MONEY_KEYS:
+                out[k] = _hide_money(v)
+            elif k in TEXT_KEYS:
+                out[k] = _mask_text(v)
+            else:
+                out[k] = strip_amounts(v)
+        return out
     if isinstance(obj, list):
         return [strip_amounts(x) for x in obj]
     return obj
@@ -59,7 +104,7 @@ def main():
         shutil.rmtree(DOCS)
     DOCS.mkdir(parents=True)
     f = (lambda o: o) if show else strip_amounts
-    dump(cfg, DOCS / "config.json")
+    dump(f(cfg), DOCS / "config.json")
     for name in ("bankroll_2024.json", "bankroll_2025.json", "distribucion_semanal.json", "analysis.json"):
         dump(f(load(DATA / "history" / name)), DOCS / "history" / name)
     dump(f(load(DATA / "bankroll_2026_status.json")), DOCS / "bankroll_2026_status.json")

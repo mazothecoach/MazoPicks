@@ -129,7 +129,7 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
   "season": 2026, "week": 3, "generated_at": "2026-09-26T08:00:00-06:00", "status": "ok",
   "sources": [{"channel": "The Sauce Picks", "video_id": "4o0fpns6Gm0", "title": "...", "url": "...", "published": "2026-09-26", "transcript_method": "youtube-transcript-api"}],
   "picks": [{
-    "id": "4o0fpns6Gm0-01", "channel": "The Sauce Picks", "game": "ATL @ GB", "kickoff": "2026-09-24",
+    "id": "4o0fpns6Gm0-01", "channel": "The Sauce Picks", "video_id": "4o0fpns6Gm0", "game": "ATL @ GB", "kickoff": "2026-09-24",
     "market": "player_prop", "category": "pass_comp", "selection": "Jordan Love over 20.5 completions",
     "line": 20.5, "odds_american": -110, "odds_decimal": 1.91,
     "confidence": "alta", "is_lock": false, "units": null,
@@ -141,6 +141,7 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
   "record": {"The Sauce Picks": {"win": 0, "loss": 0, "push": 0, "units": 0.0}}
 }
 ```
+- video_id (obligatorio): id del video de YouTube del que sale el pick, igual al video_id de su entrada en sources. El sitio lo usa para enlazar el timestamp al video correcto cuando hay varios videos en la semana.
 - market: moneyline | spread | total | player_prop | team_prop | parlay | futures.
 - category (misma taxonomía que mis apuestas): ml, ml_1h, spread, total, td_scorer, pass_yds, pass_comp, rush_yds, rec_yds, receptions, other.
 - confidence: alta | media | baja, inferido del tono ("lock", "best bet", "love this" = alta). Márcalo como inferido.
@@ -164,6 +165,7 @@ compare_odds.py llena comparison (mejor casa, diferencia %, probabilidad implíc
 
 ### 5.4 Bankroll (data/bankroll_2026.json)
 Mismo modelo que NFL BETS.xlsx: una fila por semana NFL con deposito y retiro; neto = retiro - deposito. Se actualiza al cierre de cada semana (lunes) con `python scripts/bankroll.py set --week N --deposito X --retiro Y`. bankroll.py calcula acumulado, restante antes de parar, nivel (verde hasta -5,000, amarillo hasta -8,000, rojo hasta -10,000, detenido) y estado ACTIVO / DETENIDO. El neto por boletos (my_bets.json) se muestra solo como contraste; la fuente de verdad del stop loss es el ledger.
+retiro: null significa retiro pendiente de capturar (el neto semanal queda null). retiros_sin_asignar (nivel ledger) guarda retiros reportados en total sin desglose por semana: sí cuentan en el neto total y se suman al acumulado en la última semana con depósito. Cuando se conozca la semana, mover el monto a retiro de esa semana y restarlo de retiros_sin_asignar (edición manual del JSON). `set --retiro null` marca un retiro como pendiente.
 Presupuesto semanal de referencia (Excel, hoja Distribución): 1,000 MXN = 500 dos mejores jugadas + 150 crear apuesta 1 + 150 crear apuesta 2 + 150 parlay soñador + 50 parlay lotería.
 
 ## 6. Análisis
