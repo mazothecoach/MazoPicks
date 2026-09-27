@@ -1,0 +1,55 @@
+# Reconstruye docs/data cuando cambian los datos, los scripts o los canales.
+name: build-site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - "channels.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Evita que build-site y grade-picks empujen al mismo tiempo.
+concurrency:
+  group: mazopicks-data
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # No reaccionar a los commits del propio bot (además del [skip ci]).
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Mexico_City
+      PYTHONUTF8: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Construir docs/data
+        run: python scripts/build_site.py
+
+      - name: Commit y push si docs/data cambió
+        run: |
+          if [ -z "$(git status --porcelain -- docs/data)" ]; then
+            echo "docs/data sin cambios"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data
+          git commit -m "site: rebuild docs/data [skip ci]"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
