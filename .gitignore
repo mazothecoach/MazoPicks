@@ -6,6 +6,7 @@ data/videos_new.json
 data/transcripts/*.vtt
 data/transcripts/*.m4a
 data/transcripts/*.webm
+*.mp3
 data/parlay_screenshots/
 .DS_Store
 Thumbs.db

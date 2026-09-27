@@ -50,7 +50,7 @@ YouTube y ESPN están bloqueados desde la nube de Claude Code (web). Por eso:
 | GitHub Actions | build-site.yml (reconstruye docs/data en cada push a main) y grade-picks.yml (califica picks con ESPN martes y sábado) |
 | Claude Code web + conector de Google Drive | Lee las capturas de boletos y momios que subo a Drive y las extrae a data/my_bets.json y data/odds/ |
 
-La extracción de picks desde la transcripción la hace Claude Code leyendo el .txt, no una API externa. No se necesita API key.
+La extracción de picks desde la transcripción la hace Claude Code leyendo el .txt, no una API externa. No se necesita API key (GEMINI_API_KEY es opcional y solo sirve para transcribir videos sin subtítulos, ver 4.3).
 
 ```
 MazoPicks/
@@ -64,7 +64,8 @@ MazoPicks/
 ├── scripts/
 │   ├── nfl_week.py              # fecha -> temporada y semana NFL
 │   ├── fetch_videos.py          # videos nuevos por canal (yt-dlp)
-│   ├── fetch_transcripts.py     # transcripción con fallback (API, subs, whisper)
+│   ├── fetch_transcripts.py     # transcripción con fallback (API, subs, gemini, whisper)
+│   ├── transcribe_gemini.py     # audio -> "[mm:ss] texto" con la API REST de Gemini (trozos con ffmpeg)
 │   ├── grade_picks.py           # califica picks con ESPN
 │   ├── analyze_my_bets.py       # métricas de mis apuestas
 │   ├── analyze_history.py       # métricas 2024 vs 2025
@@ -100,9 +101,22 @@ yt-dlp --flat-playlist sobre {url}/videos, filtra por title_keywords, últimos 8
 ### 4.3 Transcripción (fetch_transcripts.py), en este orden
 1. youtube-transcript-api (en, es)
 2. yt-dlp --write-auto-subs (VTT limpiado)
-3. Whisper local (faster-whisper o whisper CLI; modelo en WHISPER_MODEL)
+3. gemini, solo si GEMINI_API_KEY está definida: baja el audio con `yt-dlp -f "bestaudio" -x --audio-format mp3 --audio-quality 5 --force-overwrites -o {id}.mp3 URL` y lo transcribe con scripts/transcribe_gemini.py (API REST de Gemini sin SDK, trozos de 480 s con ffmpeg, idioma en). Con el yt-dlp actual ese comando deja {id}.mp3.mp3 (baja el stream webm como {id}.mp3 y lo convierte); el script acepta los dos nombres. Gasta cuota: fetch_transcripts.py imprime cuántas llamadas hizo.
+4. Whisper local (faster-whisper o whisper CLI; modelo en WHISPER_MODEL)
 
 Salida: data/transcripts/{video_id}.txt con encabezado (título, canal, fecha, url, semana, método) y líneas "[mm:ss] texto".
+
+Lecciones del documento "Cómo Claude ve videos" (método de Mazo, probado en 6 episodios):
+- Cookies de YouTube ya configuradas en la compu de Mazo: %USERPROFILE%\.yt-dlp\cookies.txt y el config de yt-dlp (%APPDATA%\yt-dlp\config) ya apunta ahí, así que no hace falta pasar --cookies. Si YouTube pide "Sign in to confirm you're not a bot", las cookies expiraron: re-exportarlas (extensión "Get cookies.txt LOCALLY") y sobrescribir el archivo.
+- La metadata (`yt-dlp --no-download --dump-single-json URL`) va en su propio comando; combinarla con la descarga del audio causa timeouts. Si yt-dlp parece colgado en [ExtractAudio], revisar si el mp3 ya existe antes de matarlo.
+- No apagar el thinking de Gemini: con thinkingBudget=0 degenera en basura repetida.
+- Timestamps como número (start_sec, end_sec), nunca string HH:MM:SS; el formato [mm:ss] lo pone el script.
+- maxOutputTokens 65536. Si la respuesta se trunca, cortar el mp3 en trozos con ffmpeg (~90 s para banter rápido, `--chunk 90`); nunca pedirle a Gemini que agrupe turnos ni que agrupe y lleve el tiempo en la misma pasada.
+- Cuota: el free tier de gemini-2.5-flash son 20 requests/día reales y cada reintento cuenta. 503: reintentar con backoff de 20 s. 429: fallback a gemini-3.5-flash-lite (cuota independiente; gemini-2.5-flash-lite ya no existe).
+- Siempre `python -u`: sin eso, un proceso que muere en background se lleva toda la salida.
+- Verificar antes de usar el transcript: primer timestamp cerca de 00:00 y último cerca de la duración real (ffprobe o metadata). transcribe_gemini.py lo imprime; si dice AVISO, revisar antes de extraer picks.
+- Los labels de speaker no son confiables: no atribuir un pick a alguien solo por quién parece hablar.
+- No usar el MCP claude-video-vision: es poco confiable (timeouts, captions ausentes) y no es parte del flujo. Para ver un momento puntual basta un frame: `ffmpeg -ss <segundos> -i <video> -frames:v 1 frame.png`.
 
 ### 4.4 Semana NFL (nfl_week.py)
 Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verificado en línea el 27 sep 2026. La semana NFL va de martes a lunes; Week 1 = 8 a 14 sep. Si el título del video dice "Week N", ese número manda sobre el cálculo por fecha.

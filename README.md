@@ -48,13 +48,21 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-# Opcional: transcripción local con Whisper cuando no hay subtítulos (necesita ffmpeg para bajar el audio)
-pip install faster-whisper
+# ffmpeg y ffprobe: cortan el audio en trozos para Gemini y miden su duración real (Whisper también los usa)
 winget install Gyan.FFmpeg
+
+# Recomendado: transcripción con Gemini para videos sin subtítulos (sin SDK, usa requests)
+# Key gratis en https://aistudio.google.com/apikey. Queda como variable de usuario: abre una terminal nueva después.
+[Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "PEGA_TU_KEY_AQUI", "User")
+
+# Opcional: transcripción local con Whisper (último recurso)
+pip install faster-whisper
 ```
 
 Si PowerShell no deja activar el venv: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
 Si yt-dlp avisa que le falta un runtime de JavaScript para YouTube: `winget install DenoLand.Deno`.
+Cookies de YouTube: en la compu de Mazo ya están configuradas (`%USERPROFILE%\.yt-dlp\cookies.txt`, y `%APPDATA%\yt-dlp\config` ya apunta ahí), así que yt-dlp no necesita `--cookies`. Si YouTube pide "Sign in to confirm you're not a bot", las cookies expiraron: re-expórtalas con la extensión de Chrome "Get cookies.txt LOCALLY" y sobrescribe el archivo.
+La API key de Gemini es como una contraseña: no la pegues en el repo (es público) ni en chats.
 
 ## Scripts
 
@@ -71,10 +79,13 @@ python scripts/fetch_videos.py --days 3 --max 10
 python scripts/fetch_videos.py --ids 4o0fpns6Gm0,gM-02rLbR9w --force
 $env:YTDLP_EXTRA_ARGS = "--cookies-from-browser chrome"   # si YouTube bloquea
 
-# Transcripciones -> data/transcripts/{video_id}.txt (API, subtítulos, Whisper)
-python scripts/fetch_transcripts.py
-python scripts/fetch_transcripts.py 4o0fpns6Gm0 NRYYHPXEjbc
+# Transcripciones -> data/transcripts/{video_id}.txt (API, subtítulos, Gemini, Whisper)
+python -u scripts/fetch_transcripts.py
+python -u scripts/fetch_transcripts.py 4o0fpns6Gm0 NRYYHPXEjbc
 $env:WHISPER_MODEL = "small"                       # default "base"
+
+# Transcribir un audio suelto con Gemini (ver "Transcripción")
+python -u scripts/transcribe_gemini.py --audio x.mp3 --out data/transcripts/ID.txt --lang en
 
 # Calificar picks con marcadores de ESPN (moneyline, spread, total)
 python scripts/grade_picks.py
@@ -94,6 +105,32 @@ python scripts/analyze_history.py
 # Regenerar docs/data (corre también bankroll, análisis y compare_odds)
 python scripts/build_site.py
 ```
+
+## Transcripción
+
+`fetch_transcripts.py` prueba en este orden y se queda con el primero que funcione (queda en `# transcript_method:` del .txt):
+
+1. `youtube-transcript-api` (subtítulos de YouTube, en y es).
+2. `yt-dlp --write-auto-subs` (subtítulos automáticos).
+3. `gemini`, solo si `GEMINI_API_KEY` está definida: baja el audio a mp3 con yt-dlp y lo transcribe con `scripts/transcribe_gemini.py`.
+4. Whisper local, si está instalado.
+
+Gemini es el camino confiable del método "Cómo Claude ve videos" (probado en 6 episodios):
+
+- Requiere ffmpeg en el PATH: el audio se corta en trozos de 480 s (`--chunk`) y cada trozo es una llamada. Si una respuesta sale truncada, el script rescata lo completo y corta el resto con ffmpeg; para banter muy rápido usa `--chunk 90`.
+- Cuota: el free tier de gemini-2.5-flash son **20 requests/día** y cada reintento cuenta (un video de 30 min son unas 4 llamadas). Un 503 se reintenta con backoff de 20 s; un 429 cambia solo a gemini-3.5-flash-lite (cuota aparte). Al final imprime cuántas llamadas hizo.
+- Verificación: imprime el primer y el último timestamp contra la duración real (ffprobe); si dice AVISO, revisa el transcript antes de extraer picks.
+- Corre siempre con `python -u` para no perder la salida si el proceso muere.
+
+Audio suelto (por ejemplo, para rehacer un video a mano):
+
+```powershell
+yt-dlp -f "bestaudio" -x --audio-format mp3 --audio-quality 5 --force-overwrites -o "x.%(ext)s" "https://www.youtube.com/watch?v=ID"
+python -u scripts/transcribe_gemini.py --audio x.mp3 --out data/transcripts/ID.txt --lang en
+python -u scripts/transcribe_gemini.py --audio x.mp3 --out data/transcripts/ID.txt --lang en --context "Jordan Love, Bijan Robinson"
+```
+
+Con `-o x.mp3` el yt-dlp actual deja `x.mp3.mp3`; por eso aquí va `-o "x.%(ext)s"`. El .txt que escribe `transcribe_gemini.py` lleva un encabezado mínimo (`# transcript_method: gemini`); `fetch_transcripts.py` pone el completo (título, canal, semana).
 
 ## Flujo semanal
 

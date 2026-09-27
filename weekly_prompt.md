@@ -56,7 +56,8 @@ Pasa `model` en cada llamada a Agent. Pide a cada sub-agente un reporte corto co
 `python scripts/fetch_videos.py`. Escribe `data/videos_new.json` con `video_id`, `title`, `channel`, `url`, `published`, `season`, `week`. Si hay 0 videos nuevos, salta al paso 5. Si yt-dlp reporta bloqueo de YouTube, anótalo en el log (Mazo puede definir `YTDLP_EXTRA_ARGS="--cookies-from-browser chrome"`).
 
 ### 3. Transcribir
-`python scripts/fetch_transcripts.py`. Genera `data/transcripts/{video_id}.txt` (encabezado con `# transcript_method:` y líneas `[mm:ss] texto`). Un video que marque `[FALLÓ]` NO se marca como procesado: se reintenta en la siguiente corrida y va al log con su error.
+`python -u scripts/fetch_transcripts.py`. Genera `data/transcripts/{video_id}.txt` (encabezado con `# transcript_method:` y líneas `[mm:ss] texto`). Un video que marque `[FALLÓ]` NO se marca como procesado: se reintenta en la siguiente corrida y va al log con su error.
+Usa siempre `python -u` (sin eso, si el proceso muere se pierde la salida). Si un video no tiene subtítulos automáticos y `GEMINI_API_KEY` está definida, el método gemini consume cuota (free tier: 20 requests/día, cada reintento cuenta): anota en el log cuántas llamadas se hicieron (el script imprime `[gemini] {video_id}: N llamada(s)` por video y `Presupuesto Gemini: ...` al final) y cualquier línea `Verificación: ... AVISO` (timestamps posiblemente corridos).
 
 ### 4. Extraer picks e insights
 
@@ -155,7 +156,7 @@ Escribe `logs/{fecha}.md` (fecha local CDMX, `YYYY-MM-DD`). Si ya existe (segund
 
 - Semana: 2026-W03
 - Videos nuevos: 2 (4o0fpns6Gm0 "Week 3 NFL Picks...", gM-02rLbR9w "Falcons vs Packers...")
-- Transcripción: 4o0fpns6Gm0 youtube-transcript-api; gM-02rLbR9w yt-dlp-auto-subs
+- Transcripción: 4o0fpns6Gm0 youtube-transcript-api; gM-02rLbR9w gemini (4 llamadas a Gemini, verificación OK)
 - Picks nuevos: 6 (todos No verificado)
   - 4o0fpns6Gm0-01 ATL @ GB, GB Packers -3.5, confianza media (No verificado)
 - Videos sin picks NFL (n_picks 0): ninguno
