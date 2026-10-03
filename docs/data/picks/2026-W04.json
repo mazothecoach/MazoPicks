@@ -1,0 +1,29 @@
+{
+ "season": 2026,
+ "week": 4,
+ "generated_at": "2026-10-03T09:00:00-06:00",
+ "status": "pendiente_transcripcion",
+ "status_note": "YouTube está bloqueado desde la nube de Claude. Las transcripciones se generan en la compu local con scripts/fetch_transcripts.py y después Claude extrae los picks a este archivo.",
+ "sources_note": "Lista parcial encontrada por búsqueda web el 3 oct 2026. El video de picks del domingo suele subirse el sábado en la noche; fetch_videos.py lo descubre al correr en Windows.",
+ "sources": [
+  {
+   "channel": "The Sauce Picks",
+   "video_id": "LXU4Iw2nSlw",
+   "title": "Steelers vs Browns Thursday Week 4 NFL Picks with Kyle Kirms",
+   "url": "https://www.youtube.com/watch?v=LXU4Iw2nSlw",
+   "published": null,
+   "transcript_method": null
+  },
+  {
+   "channel": "The Sauce Picks",
+   "video_id": "XnutP5KR654",
+   "title": "Saints vs Falcons Week 4 Bets - NFL Picks With Kyle Kirms",
+   "url": "https://www.youtube.com/watch?v=XnutP5KR654",
+   "published": null,
+   "transcript_method": null
+  }
+ ],
+ "picks": [],
+ "insights": [],
+ "consensus": []
+}

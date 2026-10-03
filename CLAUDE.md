@@ -210,8 +210,8 @@ run_weekly.ps1 corre Claude Code en modo headless con weekly_prompt.md y guarda 
 ## 11. Pendientes de la primera corrida
 1. En Windows: crear venv, instalar requirements.txt, probar fetch_transcripts.py con los 4 videos de Semana 3 (4o0fpns6Gm0, gM-02rLbR9w, 3zqeqSP3rao, NRYYHPXEjbc) y extraer picks a data/picks/2026-W03.json (cambiar status a "ok").
 2. Subir las 17 capturas de boletos a Drive/capturas_boletos en PNG o JPEG y extraerlas a my_bets.json (ya hay 2 registradas desde el plan inicial, validated false).
-3. Llenar depósitos y retiros de Week 1 a 3 en data/bankroll_2026.json.
-4. Activar GitHub Pages: Settings > Pages > Deploy from a branch > main, /docs. Decidir show_amounts (el repo es público).
+3. Depósitos y retiros de Week 1 a 3 ya capturados en data/bankroll_2026.json (depósitos 1,150, 3,700 y 2,300 MXN; retiros 4,800 MXN en total en retiros_sin_asignar). Falta el desglose de retiros por semana: al conocerlo, mover cada monto a retiro de su semana y restarlo de retiros_sin_asignar.
+4. Crear la rama main desde claude/fervent-turing-nwmlb0 (en GitHub: Branches > New branch > main, source claude/fervent-turing-nwmlb0), ponerla como rama predeterminada (Settings > General > Default branch) y activar GitHub Pages (Settings > Pages > Deploy from a branch > main, /docs). Los workflows solo corren en main. Decidir show_amounts (el repo es público).
 5. Registrar las tareas programadas del sábado y domingo.
 
 ## 12. Agregar canales después
