@@ -25,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Python 3.11
         uses: actions/setup-python@v5
@@ -42,8 +44,11 @@ jobs:
 
       - name: Commit y push si hay cambios
         run: |
-          if [ -z "$(git status --porcelain -- data docs)" ]; then
-            echo "Sin cambios"
+          # Solo cuenta como cambio una calificación nueva en data/picks. Los derivados
+          # (bankroll, análisis, docs/data) reescriben generated_at en cada corrida y no
+          # deben generar un commit por sí solos; cuando sí hay calificaciones se suben junto.
+          if [ -z "$(git status --porcelain -- data/picks)" ]; then
+            echo "Sin calificaciones nuevas en data/picks"
             exit 0
           fi
           git config user.name "github-actions[bot]"

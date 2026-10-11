@@ -50,8 +50,12 @@ def fetch_scores(season, week):
 
 
 def team_in(text, team):
+    """True si el texto menciona al equipo como palabra completa (abreviatura, nombre o nombre completo).
+
+    Con subcadena "CHI" matcheaba dentro de "chiefs" y "NE" dentro de "tennessee".
+    """
     t = (text or "").lower()
-    return any(k and k.lower() in t for k in (team["abbr"], team["name"], team["display"]))
+    return any(re.search(rf"\b{re.escape(k.lower())}\b", t) for k in (team["abbr"], team["name"], team["display"]) if k)
 
 
 def find_game(games, pick):
@@ -121,12 +125,18 @@ def main():
         except Exception as e:  # noqa: BLE001
             print(f"{f.name}: ESPN falló ({type(e).__name__}: {e}). Se dejan result=null.")
             continue
+        before = [(p.get("result"), p.get("graded_by")) for p in pend]
         n_ok = 0
         for p in pend:
             res, how = grade(p, find_game(games, p))
             p["result"] = res
             p["graded_by"] = how
             n_ok += res is not None
+        changed = [(p.get("result"), p.get("graded_by")) for p in pend] != before
+        if not changed:
+            # No reescribir el archivo: evita commits vacíos en grade-picks.yml.
+            print(f"{f.name}: sin cambios (props sin calificar)")
+            continue
         rec = {}
         for p in d.get("picks", []):
             if p.get("result") in ("win", "loss", "push"):
@@ -137,8 +147,8 @@ def main():
                 elif p["result"] == "loss":
                     r["units"] = round(r["units"] - 1, 2)
         d["record"] = rec
-        d["graded_at"] = date.today().isoformat()
         if not dry:
+            d["graded_at"] = date.today().isoformat()
             f.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"{f.name}: {n_ok}/{len(pend)} calificados | récord {rec}")
 
