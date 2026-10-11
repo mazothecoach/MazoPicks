@@ -1,0 +1,14 @@
+{
+  "season": 2026,
+  "week": 5,
+  "generated_at": "2026-10-11T10:00:00-06:00",
+  "status": "pendiente_transcripcion",
+  "status_note": "YouTube está bloqueado desde la nube de Claude. Las transcripciones se generan en la compu local con scripts/fetch_transcripts.py y después Claude extrae los picks a este archivo.",
+  "sources_note": "El video DQ-kC2q9-do lo pasó el usuario el 11 oct 2026; el título es por confirmar porque no se pudo abrir desde la nube.",
+  "sources": [
+    {"channel": "The Sauce Picks", "video_id": "DQ-kC2q9-do", "title": "NFL Sunday Picks - Week 5 with Kyle Kirms (título por confirmar)", "url": "https://www.youtube.com/watch?v=DQ-kC2q9-do", "published": null, "transcript_method": null},
+    {"channel": "The Sauce Picks", "video_id": "F8n9n-Jaw9s", "title": "Buccaneers @ Cowboys Thursday Week 5 NFL Picks with Kyle Kirms - October 8th", "url": "https://www.youtube.com/watch?v=F8n9n-Jaw9s", "published": null, "transcript_method": null}
+  ],
+  "picks": [],
+  "insights": []
+}

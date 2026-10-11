@@ -7,7 +7,8 @@
   "sources_note": "Lista parcial encontrada por búsqueda web el 3 oct 2026. El video de picks del domingo suele subirse el sábado en la noche; fetch_videos.py lo descubre al correr en Windows.",
   "sources": [
     {"channel": "The Sauce Picks", "video_id": "LXU4Iw2nSlw", "title": "Steelers vs Browns Thursday Week 4 NFL Picks with Kyle Kirms", "url": "https://www.youtube.com/watch?v=LXU4Iw2nSlw", "published": null, "transcript_method": null},
-    {"channel": "The Sauce Picks", "video_id": "XnutP5KR654", "title": "Saints vs Falcons Week 4 Bets - NFL Picks With Kyle Kirms", "url": "https://www.youtube.com/watch?v=XnutP5KR654", "published": null, "transcript_method": null}
+    {"channel": "The Sauce Picks", "video_id": "XnutP5KR654", "title": "Saints vs Falcons Week 4 Bets - NFL Picks With Kyle Kirms", "url": "https://www.youtube.com/watch?v=XnutP5KR654", "published": null, "transcript_method": null},
+    {"channel": "The Sauce Picks", "video_id": "PHmiQqFcnrc", "title": "Falcons vs Saints Monday Week 4 NFL Picks with Kyle Kirms - October 5th", "url": "https://www.youtube.com/watch?v=PHmiQqFcnrc", "published": null, "transcript_method": null}
   ],
   "picks": [],
   "insights": []
