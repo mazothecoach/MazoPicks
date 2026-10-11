@@ -91,6 +91,32 @@ def norm_sel(s):
     return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
 
 
+def add_to_record(rec, p):
+    """Suma un pick calificado al récord por canal (rec: {canal: récord}).
+
+    W-L-P cuenta todos los picks con result win/loss/push. bets cuenta los de
+    confidence alta o media (apuestas que el canal dijo haber hecho) y leans los de
+    confidence baja (leans y picks de concurso). units solo se mueve con odds_decimal
+    numérico: win suma odds_decimal - 1, loss resta 1, push 0. Sin momio el pick no
+    afecta units ni cuenta en units_n.
+    """
+    res = p.get("result")
+    if res not in ("win", "loss", "push"):
+        return
+    r = rec.setdefault(p.get("channel", "?"), {
+        "win": 0, "loss": 0, "push": 0, "units": 0.0, "units_n": 0,
+        "bets": {"win": 0, "loss": 0, "push": 0}, "leans": {"win": 0, "loss": 0, "push": 0}})
+    r[res] += 1
+    conf = str(p.get("confidence") or "").strip().lower()
+    kind = "bets" if conf in ("alta", "media") else "leans" if conf == "baja" else None
+    if kind:
+        r[kind][res] += 1
+    odds = p.get("odds_decimal")
+    if isinstance(odds, (int, float)) and not isinstance(odds, bool) and 1 < odds < float("inf"):
+        r["units_n"] += 1
+        r["units"] = round(r["units"] + (odds - 1 if res == "win" else -1 if res == "loss" else 0), 2)
+
+
 def main():
     cfg = load(DATA / "config.json")
     show = cfg.get("site", {}).get("show_amounts", True)
@@ -116,7 +142,7 @@ def main():
     dump(load(ROOT / "channels.json"), DOCS / "channels.json")
 
     cat_stats = analysis.get("por_categoria_leg", {})
-    weeks, record = [], defaultdict(lambda: {"win": 0, "loss": 0, "push": 0, "units": 0.0})
+    weeks, record = [], {}
     for pf in sorted((DATA / "picks").glob("*-W*.json")):
         d = load(pf)
         odds_file = DATA / "odds" / pf.name
@@ -130,13 +156,7 @@ def main():
                 p["cross"] = None
             p["odds_compare"] = comp.get(p["id"])
             groups[(p.get("game", ""), norm_sel(p.get("selection")))].append(p)
-            if p.get("result") in ("win", "loss", "push"):
-                r = record[p.get("channel", "?")]
-                r[p["result"]] += 1
-                if p["result"] == "win" and p.get("odds_decimal"):
-                    r["units"] = round(r["units"] + float(p["odds_decimal"]) - 1, 2)
-                elif p["result"] == "loss":
-                    r["units"] = round(r["units"] - 1, 2)
+            add_to_record(record, p)
         d["consensus"] = [{"game": g, "selection": ps[0].get("selection"), "channels": sorted({p["channel"] for p in ps}), "pick_ids": [p["id"] for p in ps]}
                           for (g, _), ps in groups.items() if len({p["channel"] for p in ps}) >= 2]
         dump(d, DOCS / "picks" / pf.name)

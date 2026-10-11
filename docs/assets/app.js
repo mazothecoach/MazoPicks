@@ -1244,7 +1244,8 @@
       consensusBlock(d),
       block('Picks', picksSection(tab, picks, d)),
       block('Insights del video', insightsList(d.insights)),
-      block('Récord del canal', recordSection(d), { note: 'Unidades a 1 u por pick: si gana suma el momio decimal menos 1, si pierde resta 1.' }),
+      block('Récord del canal', recordSection(d), { note: 'W-L-P cuenta todos los picks calificados. Apuestas: confianza alta o media (inferida), picks que el canal dijo haber jugado. ' +
+        'Leans: confianza baja (leans y picks de concurso). Unidades a 1 u por pick, solo de picks con momio: si gana suma el momio decimal menos 1, si pierde resta 1; sin momio no cuenta.' }),
     ].join('');
   }
 
@@ -1437,15 +1438,27 @@
     return items.length ? `<div class="card">${markList(items)}</div>` : empty('Sin insights todavía.');
   }
 
+  /** W-L-P de un objeto {win, loss, push}; s/d si no viene (datos generados antes del desglose). */
+  function wlpText(v) {
+    if (!isObj(v)) return NA;
+    return `${fmtNum(v.win || 0)}-${fmtNum(v.loss || 0)}-${fmtNum(v.push || 0)}`;
+  }
+
   function recordTable(rec, label) {
     const entries = Object.entries(obj(rec)).filter(([, v]) => isObj(v));
     if (!entries.length) return '';
-    const rows = entries.sort((x, y) => x[0].localeCompare(y[0])).map(([ch, v]) => [
-      esc(ch),
-      numCell(`${esc(fmtNum(v.win || 0))}-${esc(fmtNum(v.loss || 0))}-${esc(fmtNum(v.push || 0))}`),
-      numCell(`<span class="${toneClass(toNum(v.units))}">${esc(fmtUnits(v.units || 0))}</span>`),
-    ]);
-    return table(['Canal', th('W-L-P', 'r'), th('Unidades', 'r')], rows, label);
+    const rows = entries.sort((x, y) => x[0].localeCompare(y[0])).map(([ch, v]) => {
+      const n = toNum(v.units_n);
+      const unitsNote = n === null ? '' : `<div class="muted small">solo picks con momio (${esc(fmtNum(n))})</div>`;
+      return [
+        esc(ch),
+        numCell(esc(wlpText(v))),
+        numCell(esc(wlpText(v.bets))),
+        numCell(esc(wlpText(v.leans))),
+        numCell(`<span class="${toneClass(toNum(v.units))}">${esc(fmtUnits(v.units || 0))}</span>${unitsNote}`),
+      ];
+    });
+    return table(['Canal', th('W-L-P', 'r'), th('Apuestas W-L-P', 'r'), th('Leans W-L-P', 'r'), th('Unidades', 'r')], rows, label);
   }
 
   function recordSection(d) {

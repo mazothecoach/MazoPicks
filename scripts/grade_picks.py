@@ -110,6 +110,32 @@ def grade(pick, game):
     return None, f"mercado {market} no se califica automáticamente"
 
 
+def add_to_record(rec, p):
+    """Suma un pick calificado al récord por canal (rec: {canal: récord}).
+
+    W-L-P cuenta todos los picks con result win/loss/push. bets cuenta los de
+    confidence alta o media (apuestas que el canal dijo haber hecho) y leans los de
+    confidence baja (leans y picks de concurso). units solo se mueve con odds_decimal
+    numérico: win suma odds_decimal - 1, loss resta 1, push 0. Sin momio el pick no
+    afecta units ni cuenta en units_n.
+    """
+    res = p.get("result")
+    if res not in ("win", "loss", "push"):
+        return
+    r = rec.setdefault(p.get("channel", "?"), {
+        "win": 0, "loss": 0, "push": 0, "units": 0.0, "units_n": 0,
+        "bets": {"win": 0, "loss": 0, "push": 0}, "leans": {"win": 0, "loss": 0, "push": 0}})
+    r[res] += 1
+    conf = str(p.get("confidence") or "").strip().lower()
+    kind = "bets" if conf in ("alta", "media") else "leans" if conf == "baja" else None
+    if kind:
+        r[kind][res] += 1
+    odds = p.get("odds_decimal")
+    if isinstance(odds, (int, float)) and not isinstance(odds, bool) and 1 < odds < float("inf"):
+        r["units_n"] += 1
+        r["units"] = round(r["units"] + (odds - 1 if res == "win" else -1 if res == "loss" else 0), 2)
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry = "--dry" in sys.argv
@@ -139,13 +165,7 @@ def main():
             continue
         rec = {}
         for p in d.get("picks", []):
-            if p.get("result") in ("win", "loss", "push"):
-                r = rec.setdefault(p.get("channel", "?"), {"win": 0, "loss": 0, "push": 0, "units": 0.0})
-                r[p["result"]] += 1
-                if p["result"] == "win" and p.get("odds_decimal"):
-                    r["units"] = round(r["units"] + float(p["odds_decimal"]) - 1, 2)
-                elif p["result"] == "loss":
-                    r["units"] = round(r["units"] - 1, 2)
+            add_to_record(rec, p)
         d["record"] = rec
         if not dry:
             d["graded_at"] = date.today().isoformat()
