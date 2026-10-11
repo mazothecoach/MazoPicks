@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-10-03",
+ "generated_at": "2026-10-11",
  "season": 2026,
  "limite_perdida_mxn": 10000.0,
- "neto_acumulado_mxn": -2350.0,
- "restante_antes_de_parar_mxn": 7650.0,
- "pct_del_limite_usado": 0.235,
- "nivel": "verde",
+ "neto_acumulado_mxn": -5350.0,
+ "restante_antes_de_parar_mxn": 4650.0,
+ "pct_del_limite_usado": 0.535,
+ "nivel": "amarillo",
  "estado": "ACTIVO",
- "semanas_capturadas": 3,
+ "semanas_capturadas": 4,
  "semanas_ganadoras": 0,
  "semanas_perdedoras": 0,
- "semanas_con_retiro_pendiente": 3,
- "deposito_total": 7150.0,
+ "semanas_con_retiro_pendiente": 4,
+ "deposito_total": 10150.0,
  "retiro_total": 4800.0,
  "retiros_sin_asignar": 4800.0,
  "retiros_sin_asignar_nota": "Retiros totales reportados el 27 sep 2026 sin desglose por semana. Cuando se conozca la semana, mover el monto a retiro de esa semana y restarlo de aquí.",
  "nota_retiros": "Los retiros sin asignar sí cuentan en el neto total y en el stop loss, pero no en el neto de ninguna semana porque no se sabe en qué semana se hicieron. Las semanas con retiro pendiente muestran neto pendiente; en el acumulado, los retiros sin asignar entran en la última semana con depósito.",
  "presupuesto_semanal_mxn": 1000.0,
- "semanas_de_presupuesto_restantes": 7.7,
+ "semanas_de_presupuesto_restantes": 4.7,
  "contraste_boletos": {
-  "n_liquidados": 2,
-  "neto_mxn": -500.0,
+  "n_liquidados": 12,
+  "neto_mxn": -2739.8,
   "nota": "Neto según boletos extraídos de capturas. La fuente de verdad es el ledger semanal."
  },
  "regla": "Si el neto acumulado llega a -10,000 MXN se deja de apostar el resto de la temporada.",
@@ -65,8 +65,7 @@
    "filled": true,
    "note": "Hay boletos de esta semana en capturas (24 sep). Retiro de la semana sin desglose: ver retiros_sin_asignar.",
    "neto": null,
-   "acumulado_incluye_sin_asignar": true,
-   "acumulado": -2350.0
+   "acumulado": -7150.0
   },
   {
    "idx": 4,
@@ -76,19 +75,22 @@
    "deposito": 0,
    "retiro": null,
    "filled": false,
+   "note": "Sin captura propia; el depósito del periodo se registró en Week 5.",
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -7150.0
   },
   {
    "idx": 5,
    "label": "Week 5",
    "phase": "reg",
    "dates": "6-12 oct",
-   "deposito": 0,
+   "deposito": 3000,
    "retiro": null,
-   "filled": false,
+   "filled": true,
+   "note": "Depósito de 3,000 reportado el 11 oct 2026; cubre Semana 4 y 5 sin desglose. Repartir entre semanas cuando se conozca.",
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado_incluye_sin_asignar": true,
+   "acumulado": -5350.0
   },
   {
    "idx": 6,
@@ -99,7 +101,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 7,
@@ -110,7 +112,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 8,
@@ -121,7 +123,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 9,
@@ -132,7 +134,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 10,
@@ -143,7 +145,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 11,
@@ -154,7 +156,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 12,
@@ -165,7 +167,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 13,
@@ -176,7 +178,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 14,
@@ -187,7 +189,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 15,
@@ -198,7 +200,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 16,
@@ -209,7 +211,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 17,
@@ -220,7 +222,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 18,
@@ -231,7 +233,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 19,
@@ -242,7 +244,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 20,
@@ -253,7 +255,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 21,
@@ -264,7 +266,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   },
   {
    "idx": 22,
@@ -275,7 +277,7 @@
    "retiro": null,
    "filled": false,
    "neto": null,
-   "acumulado": -2350.0
+   "acumulado": -5350.0
   }
  ]
 }

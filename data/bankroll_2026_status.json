@@ -19,8 +19,8 @@
   "presupuesto_semanal_mxn": 1000.0,
   "semanas_de_presupuesto_restantes": 4.7,
   "contraste_boletos": {
-    "n_liquidados": 2,
-    "neto_mxn": -500.0,
+    "n_liquidados": 12,
+    "neto_mxn": -2739.8,
     "nota": "Neto según boletos extraídos de capturas. La fuente de verdad es el ledger semanal."
   },
   "regla": "Si el neto acumulado llega a -10,000 MXN se deja de apostar el resto de la temporada.",

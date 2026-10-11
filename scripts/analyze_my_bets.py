@@ -20,6 +20,9 @@ CATEGORY_LABELS = {
     "ml": "Moneyline", "ml_1h": "Moneyline 1a mitad", "spread": "Spread", "total": "Total (O/U)",
     "td_scorer": "Anotador de TD", "pass_yds": "Yardas por pase", "pass_comp": "Pases completados",
     "rush_yds": "Yardas por tierra", "rec_yds": "Yardas por recepción", "receptions": "Recepciones", "other": "Otro",
+    "total_1h": "Total 1a mitad", "spread_1h": "Spread 1a mitad", "pass_td": "Pases de TD",
+    "team_total": "Total de puntos de equipo", "team_fg": "Goles de campo de equipo",
+    "team_fg_1h": "Goles de campo de equipo 1a mitad", "team_td": "Touchdowns de equipo", "td_1h": "Touchdowns 1a mitad",
 }
 
 

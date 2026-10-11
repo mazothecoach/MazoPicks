@@ -1,37 +1,37 @@
 {
- "generated_at": "2026-10-03",
- "n_boletos_total": 2,
- "n_boletos_settled": 2,
+ "generated_at": "2026-10-11",
+ "n_boletos_total": 12,
+ "n_boletos_settled": 12,
  "n_boletos_open": 0,
- "n_no_validados": 2,
- "advertencia_muestra": "Menos de 10 boletos liquidados: las métricas son orientativas.",
+ "n_no_validados": 12,
+ "advertencia_muestra": null,
  "global": {
-  "n": 2,
-  "invertido_mxn": 500.0,
+  "n": 12,
+  "invertido_mxn": 2739.8,
   "cobrado_mxn": 0.0,
-  "profit_mxn": -500.0,
+  "profit_mxn": -2739.8,
   "roi": -1.0,
   "ganados": 0,
   "hit_rate": 0.0,
-  "muestra_chica": true
+  "muestra_chica": false
  },
  "por_tipo": {
   "sgp": {
-   "n": 1,
-   "invertido_mxn": 500.0,
+   "n": 3,
+   "invertido_mxn": 900.0,
    "cobrado_mxn": 0.0,
-   "profit_mxn": -500.0,
+   "profit_mxn": -900.0,
    "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true
   },
   "parlay": {
-   "n": 1,
-   "invertido_mxn": 0.0,
+   "n": 9,
+   "invertido_mxn": 1839.8,
    "cobrado_mxn": 0.0,
-   "profit_mxn": 0.0,
-   "roi": null,
+   "profit_mxn": -1839.8,
+   "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true
@@ -39,38 +39,49 @@
  },
  "por_legs": {
   "2": {
-   "n": 1,
-   "invertido_mxn": 500.0,
+   "n": 2,
+   "invertido_mxn": 674.8,
    "cobrado_mxn": 0.0,
-   "profit_mxn": -500.0,
+   "profit_mxn": -674.8,
    "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true,
-   "prob_implicita_prom": 0.308
+   "prob_implicita_prom": 0.162
   },
   "3": {
-   "n": 1,
-   "invertido_mxn": 0.0,
+   "n": 4,
+   "invertido_mxn": 1025.0,
    "cobrado_mxn": 0.0,
-   "profit_mxn": 0.0,
-   "roi": null,
+   "profit_mxn": -1025.0,
+   "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true,
-   "prob_implicita_prom": 0.181
+   "prob_implicita_prom": 0.129
+  },
+  "4+": {
+   "n": 6,
+   "invertido_mxn": 1040.0,
+   "cobrado_mxn": 0.0,
+   "profit_mxn": -1040.0,
+   "roi": -1.0,
+   "ganados": 0,
+   "hit_rate": 0.0,
+   "muestra_chica": true,
+   "prob_implicita_prom": 0.069
   }
  },
  "por_casa": {
   "playdoit": {
-   "n": 1,
-   "invertido_mxn": 500.0,
+   "n": 11,
+   "invertido_mxn": 2739.8,
    "cobrado_mxn": 0.0,
-   "profit_mxn": -500.0,
+   "profit_mxn": -2739.8,
    "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
-   "muestra_chica": true
+   "muestra_chica": false
   },
   "draftea": {
    "n": 1,
@@ -103,11 +114,19 @@
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true
-  }
- },
- "por_origen": {
-  "propio": {
-   "n": 2,
+  },
+  "tarde (12-18)": {
+   "n": 5,
+   "invertido_mxn": 1489.8,
+   "cobrado_mxn": 0.0,
+   "profit_mxn": -1489.8,
+   "roi": -1.0,
+   "ganados": 0,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "mañana (06-12)": {
+   "n": 4,
    "invertido_mxn": 500.0,
    "cobrado_mxn": 0.0,
    "profit_mxn": -500.0,
@@ -115,6 +134,28 @@
    "ganados": 0,
    "hit_rate": 0.0,
    "muestra_chica": true
+  },
+  "desconocido": {
+   "n": 1,
+   "invertido_mxn": 250.0,
+   "cobrado_mxn": 0.0,
+   "profit_mxn": -250.0,
+   "roi": -1.0,
+   "ganados": 0,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  }
+ },
+ "por_origen": {
+  "propio": {
+   "n": 12,
+   "invertido_mxn": 2739.8,
+   "cobrado_mxn": 0.0,
+   "profit_mxn": -2739.8,
+   "roi": -1.0,
+   "ganados": 0,
+   "hit_rate": 0.0,
+   "muestra_chica": false
   }
  },
  "por_semana": {
@@ -129,10 +170,20 @@
    "muestra_chica": true
   },
   "W03": {
-   "n": 1,
-   "invertido_mxn": 500.0,
+   "n": 7,
+   "invertido_mxn": 1739.8,
    "cobrado_mxn": 0.0,
-   "profit_mxn": -500.0,
+   "profit_mxn": -1739.8,
+   "roi": -1.0,
+   "ganados": 0,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "W04": {
+   "n": 4,
+   "invertido_mxn": 1000.0,
+   "cobrado_mxn": 0.0,
+   "profit_mxn": -1000.0,
    "roi": -1.0,
    "ganados": 0,
    "hit_rate": 0.0,
@@ -169,68 +220,272 @@
    "label": "Moneyline 1a mitad"
   },
   "pass_comp": {
-   "n": 1,
-   "wins": 1,
+   "n": 2,
+   "wins": 2,
    "losses": 0,
    "hit_rate": 1.0,
    "muestra_chica": true,
    "label": "Pases completados"
   },
   "ml": {
+   "n": 7,
+   "wins": 1,
+   "losses": 6,
+   "hit_rate": 0.143,
+   "muestra_chica": true,
+   "label": "Moneyline"
+  },
+  "td_scorer": {
+   "n": 8,
+   "wins": 2,
+   "losses": 6,
+   "hit_rate": 0.25,
+   "muestra_chica": true,
+   "label": "Anotador de TD"
+  },
+  "team_fg": {
+   "n": 3,
+   "wins": 2,
+   "losses": 1,
+   "hit_rate": 0.667,
+   "muestra_chica": true,
+   "label": "Goles de campo de equipo"
+  },
+  "receptions": {
+   "n": 6,
+   "wins": 0,
+   "losses": 6,
+   "hit_rate": 0.0,
+   "muestra_chica": true,
+   "label": "Recepciones"
+  },
+  "td_1h": {
+   "n": 1,
+   "wins": 0,
+   "losses": 1,
+   "hit_rate": 0.0,
+   "muestra_chica": true,
+   "label": "Touchdowns 1a mitad"
+  },
+  "team_fg_1h": {
    "n": 1,
    "wins": 1,
    "losses": 0,
    "hit_rate": 1.0,
    "muestra_chica": true,
-   "label": "Moneyline"
+   "label": "Goles de campo de equipo 1a mitad"
   },
-  "td_scorer": {
+  "rush_yds": {
+   "n": 5,
+   "wins": 2,
+   "losses": 3,
+   "hit_rate": 0.4,
+   "muestra_chica": true,
+   "label": "Yardas por tierra"
+  },
+  "total": {
+   "n": 5,
+   "wins": 4,
+   "losses": 1,
+   "hit_rate": 0.8,
+   "muestra_chica": true,
+   "label": "Total (O/U)"
+  },
+  "pass_td": {
+   "n": 5,
+   "wins": 3,
+   "losses": 2,
+   "hit_rate": 0.6,
+   "muestra_chica": true,
+   "label": "Pases de TD"
+  },
+  "spread": {
+   "n": 8,
+   "wins": 8,
+   "losses": 0,
+   "hit_rate": 1.0,
+   "muestra_chica": true,
+   "label": "Spread"
+  },
+  "total_1h": {
+   "n": 6,
+   "wins": 3,
+   "losses": 3,
+   "hit_rate": 0.5,
+   "muestra_chica": true,
+   "label": "Total 1a mitad"
+  },
+  "rec_yds": {
+   "n": 2,
+   "wins": 2,
+   "losses": 0,
+   "hit_rate": 1.0,
+   "muestra_chica": true,
+   "label": "Yardas por recepción"
+  },
+  "spread_1h": {
+   "n": 1,
+   "wins": 1,
+   "losses": 0,
+   "hit_rate": 1.0,
+   "muestra_chica": true,
+   "label": "Spread 1a mitad"
+  },
+  "pass_yds": {
+   "n": 1,
+   "wins": 0,
+   "losses": 1,
+   "hit_rate": 0.0,
+   "muestra_chica": true,
+   "label": "Yardas por pase"
+  },
+  "team_total": {
+   "n": 1,
+   "wins": 0,
+   "losses": 1,
+   "hit_rate": 0.0,
+   "muestra_chica": true,
+   "label": "Total de puntos de equipo"
+  },
+  "team_td": {
    "n": 2,
    "wins": 1,
    "losses": 1,
    "hit_rate": 0.5,
    "muestra_chica": true,
-   "label": "Anotador de TD"
+   "label": "Touchdowns de equipo"
   }
  },
  "por_equipo_leg": {
-  "DET": {
-   "n": 1,
-   "wins": 0,
-   "losses": 1,
-   "hit_rate": 0.0,
+  "ARI": {
+   "n": 6,
+   "wins": 3,
+   "losses": 3,
+   "hit_rate": 0.5,
    "muestra_chica": true
   },
-  "GB": {
+  "BAL": {
    "n": 3,
    "wins": 2,
    "losses": 1,
    "hit_rate": 0.667,
    "muestra_chica": true
   },
-  "TB": {
+  "BUF": {
+   "n": 1,
+   "wins": 0,
+   "losses": 1,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "CAR": {
+   "n": 2,
+   "wins": 0,
+   "losses": 2,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "DAL": {
+   "n": 5,
+   "wins": 2,
+   "losses": 3,
+   "hit_rate": 0.4,
+   "muestra_chica": true
+  },
+  "GB": {
+   "n": 8,
+   "wins": 4,
+   "losses": 4,
+   "hit_rate": 0.5,
+   "muestra_chica": true
+  },
+  "HOU": {
+   "n": 3,
+   "wins": 0,
+   "losses": 3,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "LAR": {
    "n": 1,
    "wins": 1,
    "losses": 0,
    "hit_rate": 1.0,
    "muestra_chica": true
+  },
+  "MIA": {
+   "n": 2,
+   "wins": 1,
+   "losses": 1,
+   "hit_rate": 0.5,
+   "muestra_chica": true
+  },
+  "MIN": {
+   "n": 6,
+   "wins": 6,
+   "losses": 0,
+   "hit_rate": 1.0,
+   "muestra_chica": true
+  },
+  "NE": {
+   "n": 3,
+   "wins": 0,
+   "losses": 3,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "NO": {
+   "n": 2,
+   "wins": 0,
+   "losses": 2,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "NYG": {
+   "n": 4,
+   "wins": 3,
+   "losses": 1,
+   "hit_rate": 0.75,
+   "muestra_chica": true
+  },
+  "PIT": {
+   "n": 1,
+   "wins": 1,
+   "losses": 0,
+   "hit_rate": 1.0,
+   "muestra_chica": true
+  },
+  "SF": {
+   "n": 2,
+   "wins": 0,
+   "losses": 2,
+   "hit_rate": 0.0,
+   "muestra_chica": true
+  },
+  "TB": {
+   "n": 5,
+   "wins": 2,
+   "losses": 3,
+   "hit_rate": 0.4,
+   "muestra_chica": true
   }
  },
  "por_fuente_leg": {
   "propio": {
-   "n": 5,
-   "wins": 3,
-   "losses": 2,
-   "hit_rate": 0.6,
-   "muestra_chica": true
+   "n": 65,
+   "wins": 32,
+   "losses": 33,
+   "hit_rate": 0.492,
+   "muestra_chica": false
   }
  },
  "leg_que_me_mata": {
-  "parlays_perdidos": 2,
-  "perdidos_por_una_sola_leg": 2,
+  "parlays_perdidos": 12,
+  "perdidos_por_una_sola_leg": 3,
   "categoria_culpable": {
    "ml_1h": 1,
-   "td_scorer": 1
+   "td_scorer": 1,
+   "receptions": 1
   }
  },
  "calibracion": [
@@ -241,18 +496,46 @@
    "hit_rate": 1.0
   },
   {
+   "bin": "40-55%",
+   "n": 4,
+   "prob_implicita_prom": 0.525,
+   "hit_rate": 0.5
+  },
+  {
    "bin": "55-70%",
-   "n": 2,
+   "n": 14,
    "prob_implicita_prom": 0.631,
+   "hit_rate": 0.429
+  },
+  {
+   "bin": ">70%",
+   "n": 2,
+   "prob_implicita_prom": 0.712,
    "hit_rate": 0.5
   }
  ],
- "que_si": [],
- "que_no": [],
+ "que_si": [
+  "Spread: 8 de 8 aciertos (100%). SÍ. Muestra chica.",
+  "Total (O/U): 4 de 5 aciertos (80%). SÍ. Muestra chica.",
+  "Pases de TD: 3 de 5 aciertos (60%). SÍ. Muestra chica.",
+  "Goles de campo de equipo: 2 de 3 aciertos (67%). SÍ. Muestra chica."
+ ],
+ "que_no": [
+  "Anotador de TD: 2 de 8 aciertos (25%). NO. Muestra chica.",
+  "Moneyline: 1 de 7 aciertos (14%). NO. Muestra chica.",
+  "Recepciones: 0 de 6 aciertos (0%). NO. Muestra chica.",
+  "Boletos de 3 legs: 0 de 4 ganados. NO. Muestra chica.",
+  "Boletos de 4+ legs: 0 de 6 ganados. NO. Muestra chica."
+ ],
  "muestra_insuficiente": [
-  "Anotador de TD: solo 2 leg(s) calificadas. Muestra insuficiente.",
+  "Pases completados: solo 2 leg(s) calificadas. Muestra insuficiente.",
+  "Yardas por recepción: solo 2 leg(s) calificadas. Muestra insuficiente.",
+  "Touchdowns de equipo: solo 2 leg(s) calificadas. Muestra insuficiente.",
   "Moneyline 1a mitad: solo 1 leg(s) calificadas. Muestra insuficiente.",
-  "Pases completados: solo 1 leg(s) calificadas. Muestra insuficiente.",
-  "Moneyline: solo 1 leg(s) calificadas. Muestra insuficiente."
+  "Touchdowns 1a mitad: solo 1 leg(s) calificadas. Muestra insuficiente.",
+  "Goles de campo de equipo 1a mitad: solo 1 leg(s) calificadas. Muestra insuficiente.",
+  "Spread 1a mitad: solo 1 leg(s) calificadas. Muestra insuficiente.",
+  "Yardas por pase: solo 1 leg(s) calificadas. Muestra insuficiente.",
+  "Total de puntos de equipo: solo 1 leg(s) calificadas. Muestra insuficiente."
  ]
 }

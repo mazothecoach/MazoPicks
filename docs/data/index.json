@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-03",
+ "generated_at": "2026-10-11",
  "season": 2026,
  "show_amounts": true,
  "weeks": [
@@ -17,9 +17,18 @@
    "week": 4,
    "file": "picks/2026-W04.json",
    "n_picks": 0,
-   "n_videos": 2,
+   "n_videos": 3,
    "status": "pendiente_transcripcion",
    "generated_at": "2026-10-03T09:00:00-06:00"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "file": "picks/2026-W05.json",
+   "n_picks": 0,
+   "n_videos": 2,
+   "status": "pendiente_transcripcion",
+   "generated_at": "2026-10-11T10:00:00-06:00"
   }
  ],
  "channel_record": {}

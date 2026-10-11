@@ -29,6 +29,9 @@
     ml: 'Moneyline', ml_1h: 'Moneyline 1a mitad', spread: 'Spread', total: 'Total (O/U)',
     td_scorer: 'Anotador de TD', pass_yds: 'Yardas por pase', pass_comp: 'Pases completados',
     rush_yds: 'Yardas por tierra', rec_yds: 'Yardas por recepción', receptions: 'Recepciones', other: 'Otro',
+    total_1h: 'Total 1a mitad', spread_1h: 'Spread 1a mitad', pass_td: 'Pases de TD',
+    team_total: 'Total de puntos de equipo', team_fg: 'Goles de campo de equipo',
+    team_fg_1h: 'Goles de campo de equipo 1a mitad', team_td: 'Touchdowns de equipo', td_1h: 'Touchdowns 1a mitad',
   };
   const MARKET_LABELS = {
     moneyline: 'Moneyline', spread: 'Spread', total: 'Total', player_prop: 'Prop de jugador',
@@ -1014,8 +1017,12 @@
     const res = RESULTS[l.result] || ['Pendiente', 'neutral'];
     const meta = [l.game, catLabel(l.category)].filter(Boolean).map(esc).join(' · ');
     const src = l.source && l.source !== 'propio' ? ` · ${esc(l.source)}` : '';
+    const odds = l.group
+      ? `${esc(l.group)} · momio del grupo ${oddsPair(l.group_odds_american, null)}`
+      : `momio ${oddsPair(l.odds_american, l.odds_decimal)}`;
+    const score = l.final_score ? ` · final ${esc(l.final_score)}` : '';
     return `<li><div class="leg-top"><span class="leg-sel">${esc(l.selection || NA)}</span>${badge(res[0], res[1])}</div>` +
-      `<div class="muted small">${meta} · momio ${oddsPair(l.odds_american, l.odds_decimal)}${src}</div>` +
+      `<div class="muted small">${meta} · ${odds}${score}${src}</div>` +
       (l.notes ? `<p class="note">${esc(l.notes)}</p>` : '') + '</li>';
   }
 

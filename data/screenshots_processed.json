@@ -1,5 +1,16 @@
 {
   "_doc": "Capturas de Drive ya extraídas a my_bets.json. Clave: nombre de archivo en Drive. Valor: ticket_ids extraídos y fecha.",
   "IMG_9160.png": {"ticket_ids": ["5459407998"], "extracted_at": "2026-09-27", "note": "Leída en el plan inicial (CLAUDE.md de Drive). Validar contra la captura cuando esté en capturas_boletos."},
-  "IMG_9174.jpeg": {"ticket_ids": ["TKT_IMG_9174"], "extracted_at": "2026-09-27", "note": "Leída en el plan inicial. El Ticket ID real no se anotó; reemplazar cuando se suba la captura."}
+  "IMG_9174.jpeg": {"ticket_ids": ["TKT_IMG_9174"], "extracted_at": "2026-09-27", "note": "Leída en el plan inicial. El Ticket ID real no se anotó; reemplazar cuando se suba la captura."},
+  "d2d1b86a-image.png": {"ticket_ids": ["5470564429"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "b5dc3971-image.png": {"ticket_ids": ["5470564429"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive. Duplicada de d2d1b86a-image.png."},
+  "ddf72e11-image.png": {"ticket_ids": ["5470548419"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "4abc20d5-image.png": {"ticket_ids": ["5470524854"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "bace5522-image.png": {"ticket_ids": ["5470500226"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "13890554-image.png": {"ticket_ids": ["5469716400"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "40da1733-image.png": {"ticket_ids": ["PLAYDOIT_2026-09-27_A"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "1090c3df-image.png": {"ticket_ids": ["5492909305"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "4601770c-image.png": {"ticket_ids": ["5492216782"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "8b82aa88-image.png": {"ticket_ids": ["5492122872"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"},
+  "cd0723fd-image.png": {"ticket_ids": ["5492107363"], "extracted_at": "2026-10-11", "note": "Enviadas por chat el 11 oct 2026; no están en Drive"}
 }

@@ -103,7 +103,7 @@ Reglas por campo:
 - `video_id` (obligatorio): id del video de YouTube de donde sale el pick, el mismo que su entrada en `sources`. El sitio lo usa para que el link del `timestamp` abra el video correcto cuando hay varios videos en la semana. Nunca lo omitas ni lo dejes `null`.
 - `game`: `"VISITANTE @ LOCAL"` con abreviaturas de ESPN (ARI ATL BAL BUF CAR CHI CIN CLE DAL DEN DET GB HOU IND JAX KC LAC LAR LV MIA MIN NE NO NYG NYJ PHI PIT SEA SF TB TEN WSH). Si dudas quién es local, confírmalo en `https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&seasontype=2&week=N`. `kickoff`: fecha del partido (YYYY-MM-DD) o `null` si no se pudo confirmar.
 - `market`: moneyline | spread | total | player_prop | team_prop | parlay | futures.
-- `category`: ml | ml_1h | spread | total | td_scorer | pass_yds | pass_comp | rush_yds | rec_yds | receptions | other.
+- `category`: ml | ml_1h | spread | spread_1h | total | total_1h | team_total | team_td | team_fg | team_fg_1h | td_1h | td_scorer | pass_td | pass_yds | pass_comp | rush_yds | rec_yds | receptions | other.
 - `selection`: texto que el calificador pueda leer. Moneyline y spread: abreviatura y nombre del equipo, más la línea ("KC Chiefs ML", "GB Packers -3.5"). Totales: empieza con "Over" o "Under" más la línea ("Over 47.5"). Props: jugador, dirección, línea y estadística ("Jordan Love over 20.5 completions").
 - `line`: número (spread del equipo elegido, total o línea del prop) o `null`.
 - `odds_american` / `odds_decimal`: solo si se dicen en el video. Si dice uno, puedes convertir al otro (americano positivo: 1 + a/100; negativo: 1 + 100/|a|; decimal con 2 decimales). Si no dice momio, ambos `null`.

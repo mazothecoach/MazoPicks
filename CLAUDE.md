@@ -143,7 +143,7 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
 ```
 - video_id (obligatorio): id del video de YouTube del que sale el pick, igual al video_id de su entrada en sources. El sitio lo usa para enlazar el timestamp al video correcto cuando hay varios videos en la semana.
 - market: moneyline | spread | total | player_prop | team_prop | parlay | futures.
-- category (misma taxonomía que mis apuestas): ml, ml_1h, spread, total, td_scorer, pass_yds, pass_comp, rush_yds, rec_yds, receptions, other.
+- category (misma taxonomía que mis apuestas): ml, ml_1h, spread, spread_1h, total, total_1h, team_total, team_td, team_fg, team_fg_1h, td_1h, td_scorer, pass_td, pass_yds, pass_comp, rush_yds, rec_yds, receptions, other. Las de 1a mitad llevan sufijo _1h; team_* son props de equipo (puntos, TDs, goles de campo); pass_td son pases de TD de un QB.
 - confidence: alta | media | baja, inferido del tono ("lock", "best bet", "love this" = alta). Márcalo como inferido.
 - odds y line: solo si se dicen en el video. Si no, null. No inventes momios.
 - verified: false siempre que el dato venga solo del audio. Corrige nombres mal transcritos contra el roster si puedes y déjalo anotado en reasoning.
@@ -154,7 +154,9 @@ Temporada 2026: kickoff miércoles 9 de septiembre de 2026 (SEA vs NE), verifica
 ### 5.2 Mis apuestas (data/my_bets.json)
 Una fila por boleto con sus legs. El _schema completo está en el archivo. Campos clave además de los obvios:
 - followed_channel: "The Sauce Picks" si el boleto sigue un pick del canal, "mixto" si combina, null si es idea propia. channel_pick_ids: ids de data/picks que se siguieron. Así se mide "mis picks junto con Sauce" vs propios.
+- legs[].category: misma taxonomía que 5.1 (ml, ml_1h, spread, spread_1h, total, total_1h, team_total, team_td, team_fg, team_fg_1h, td_1h, td_scorer, pass_td, pass_yds, pass_comp, rush_yds, rec_yds, receptions, other).
 - legs[].source: propio | sauce | otro. legs[].team: abreviatura del equipo.
+- Grupos SGP dentro de un parlay de Playdoit: se aplanan las legs; cada leg del grupo lleva group ("SGP AWAY @ HOME") y group_odds_american (momio del grupo), con odds_american y odds_decimal null. legs_count cuenta el grupo como 1 selección; en un boleto type sgp (un solo grupo) legs_count es el número de legs. Opcionales: id_confidence (cuando el ticket_id no se lee directo) y final_score ("AWAY xx - HOME yy", marcador visible en la captura).
 - free_bet true: el stake no cuenta como invertido. boost true: se registra el momio antes del boost en odds_before_boost_american.
 - validated false hasta que yo confirme la extracción viendo la tabla resumen.
 - Deduplica por ticket_id. Boletos colapsados en la captura (solo encabezado con "PERDIDO" o "CERRAR APUESTA"): legs: [] y legs_visible: false. No inventes legs. Si un dato no se lee: null + notes.
