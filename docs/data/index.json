@@ -25,10 +25,10 @@
    "season": 2026,
    "week": 5,
    "file": "picks/2026-W05.json",
-   "n_picks": 0,
+   "n_picks": 17,
    "n_videos": 2,
-   "status": "pendiente_transcripcion",
-   "generated_at": "2026-10-11T10:00:00-06:00"
+   "status": "ok",
+   "generated_at": "2026-10-11T11:00:00-06:00"
   }
  ],
  "channel_record": {}
