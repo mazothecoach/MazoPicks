@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-11",
+ "generated_at": "2026-10-13",
  "season": 2026,
  "show_amounts": true,
  "weeks": [
@@ -31,5 +31,23 @@
    "generated_at": "2026-10-11T11:00:00-06:00"
   }
  ],
- "channel_record": {}
+ "channel_record": {
+  "The Sauce Picks": {
+   "win": 7,
+   "loss": 5,
+   "push": 1,
+   "units": -0.23,
+   "units_n": 2,
+   "bets": {
+    "win": 3,
+    "loss": 5,
+    "push": 0
+   },
+   "leans": {
+    "win": 4,
+    "loss": 0,
+    "push": 1
+   }
+  }
+ }
 }
